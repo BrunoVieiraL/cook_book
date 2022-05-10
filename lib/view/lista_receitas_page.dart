@@ -1,5 +1,6 @@
-import 'package:cooking_agenda/models/receitas_model.dart';
 import 'package:flutter/material.dart';
+
+import '../models/receitas_model.dart';
 
 class ListaReceitas extends StatefulWidget {
   const ListaReceitas({Key? key}) : super(key: key);
@@ -13,7 +14,6 @@ class _ListaReceitasState extends State<ListaReceitas> {
   Widget build(BuildContext context) {
     late ReceitasModel argsFromAddReceitas =
         ModalRoute.of(context)!.settings.arguments as ReceitasModel;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Receitas'),
@@ -26,14 +26,18 @@ class _ListaReceitasState extends State<ListaReceitas> {
               shrinkWrap: true,
               itemCount: argsFromAddReceitas.idReceita,
               itemBuilder: (_, index) => ListTile(
-                title: Text(argsFromAddReceitas.nomeReceita),
+                title: Text(
+                  argsFromAddReceitas.nomeReceita,
+                ),
                 onTap: () {
-                  Navigator.of(context).pushNamed('/detalhes', arguments: [
-                    argsFromAddReceitas.idReceita,
-                    argsFromAddReceitas.ingredientes,
-                    argsFromAddReceitas.modoPreparo,
-                    argsFromAddReceitas.nomeReceita
-                  ]);
+                  setState(
+                    () {
+                      Navigator.of(context).pushNamed(
+                        '/detalhes',
+                        arguments: argsFromAddReceitas,
+                      );
+                    },
+                  );
                 },
               ),
             ),
@@ -41,7 +45,9 @@ class _ListaReceitasState extends State<ListaReceitas> {
               onPressed: () {
                 Navigator.of(context).pushReplacementNamed('/addReceitas');
               },
-              child: const Text('Adicionar Receita'),
+              child: const Text(
+                'Adicionar Receita',
+              ),
             ),
           ],
         ),

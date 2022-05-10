@@ -21,36 +21,48 @@ class _AddReceitasState extends State<AddReceitas> {
         children: [
           TextField(
             onChanged: (recipeName) {
-              receitasModel.nomeReceita = recipeName;
+              setState(
+                () {
+                  receitasModel.nomeReceita = recipeName;
+                },
+              );
             },
           ),
           TextField(
             onChanged: (recipeIngredients) {
-              receitasModel.ingredientes = recipeIngredients;
+              setState(
+                () {
+                  receitasModel.ingredientes = recipeIngredients;
+                },
+              );
             },
           ),
           TextField(
             onChanged: (recipePrepareMode) {
-              receitasModel.modoPreparo = recipePrepareMode;
+              setState(
+                () {
+                  receitasModel.modoPreparo = recipePrepareMode;
+                },
+              );
             },
           ),
           TextButton(
             onPressed: () {
-              if (receitasModel.nomeReceita.isNotEmpty &&
-                  receitasModel.ingredientes.isNotEmpty &&
-                  receitasModel.modoPreparo.isNotEmpty) {
-                receitasModel.idReceita = receitasModel.idReceita + 1;
-                Navigator.of(context)
-                    .popAndPushNamed('/listReceitas', arguments: [
-                  receitasModel.nomeReceita,
-                  receitasModel.ingredientes,
-                  receitasModel.modoPreparo,
-                  receitasModel.idReceita,
-                ]);
-              }
-               else {
-                Navigator.of(context).pop();
-              }
+              setState(
+                () {
+                  if (receitasModel.nomeReceita.isNotEmpty &&
+                      receitasModel.ingredientes.isNotEmpty &&
+                      receitasModel.modoPreparo.isNotEmpty) {
+                    receitasModel.idReceita = (receitasModel.idReceita + 1);
+                    Navigator.of(context).popAndPushNamed(
+                      '/listReceitas',
+                      arguments: receitasModel,
+                    );
+                  } else {
+                    Navigator.of(context).pop();
+                  }
+                },
+              );
             },
             child: const Text('Salvar'),
           ),

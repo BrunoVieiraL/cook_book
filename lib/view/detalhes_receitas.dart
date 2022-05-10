@@ -13,22 +13,31 @@ class _DetalhesReceitasState extends State<DetalhesReceitas> {
   @override
   Widget build(BuildContext context) {
     late ReceitasModel argsFromListaReceitas =
-        ModalRoute.of(context)!.settings.arguments as ReceitasModel;
+        ModalRoute.of(context)?.settings.arguments as ReceitasModel;
     return Scaffold(
       appBar: AppBar(
-        title: Text(argsFromListaReceitas.nomeReceita),
+        title: Text(
+          argsFromListaReceitas.nomeReceita,
+        ),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(Icons.arrow_back)),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+            ),
+          ),
         ],
       ),
       body: Column(
         children: [
-          Text(argsFromListaReceitas.ingredientes),
-          Text(argsFromListaReceitas.modoPreparo),
+          Text(
+            argsFromListaReceitas.ingredientes ,
+          ),
+          Text(
+            argsFromListaReceitas.modoPreparo ,
+          ),
         ],
       ),
     );
