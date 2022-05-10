@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (_) => const SplashPage(),
-        '/listReceitas': (_)=> const ListaReceitas(),
+        '/listReceitas': (_) => const ListaReceitas(),
         '/addReceitas': (_) => const AddReceitas(),
         '/detalhesReceitas': (_) => const DetalhesReceitas(),
         '/settings': (_) => const SettingsPage(),
