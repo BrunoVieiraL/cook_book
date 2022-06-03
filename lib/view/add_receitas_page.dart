@@ -1,18 +1,20 @@
-import 'package:cooking_agenda/models/receitas_model.dart';
+import 'package:cooking_agenda/controllers/receitas_controller.dart';
 import 'package:flutter/material.dart';
 
-class AddReceitas extends StatefulWidget {
-  const AddReceitas({Key? key}) : super(key: key);
+class AdicionarReceitas extends StatefulWidget {
+  const AdicionarReceitas({Key? key}) : super(key: key);
 
   @override
-  State<AddReceitas> createState() => _AddReceitasState();
+  State<AdicionarReceitas> createState() => _AdicionarReceitasState();
 }
 
-class _AddReceitasState extends State<AddReceitas> {
+class _AdicionarReceitasState extends State<AdicionarReceitas> {
+  ReceitasController controller = ReceitasController();
+  late String _nomeReceita;
+  late String _ingredients;
+  late String _prepare;
   @override
   Widget build(BuildContext context) {
-    ReceitasModel receitasModel = ReceitasModel();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Adicionar Receitas'),
@@ -20,49 +22,28 @@ class _AddReceitasState extends State<AddReceitas> {
       body: Column(
         children: [
           TextField(
-            onChanged: (recipeName) {
-              setState(
-                () {
-                  receitasModel.nomeReceita = recipeName;
-                },
-              );
+            onChanged: (title) {
+              _nomeReceita = title;
             },
           ),
           TextField(
-            onChanged: (recipeIngredients) {
-              setState(
-                () {
-                  receitasModel.ingredientes = recipeIngredients;
-                },
-              );
+            onChanged: (ingredientes) {
+              _ingredients = ingredientes;
             },
           ),
           TextField(
-            onChanged: (recipePrepareMode) {
-              setState(
-                () {
-                  receitasModel.modoPreparo = recipePrepareMode;
-                },
-              );
+            onChanged: (preparo) {
+              _prepare = preparo;
             },
           ),
           TextButton(
             onPressed: () {
-              setState(
-                () {
-                  if (receitasModel.nomeReceita.isNotEmpty &&
-                      receitasModel.ingredientes.isNotEmpty &&
-                      receitasModel.modoPreparo.isNotEmpty) {
-                    receitasModel.idReceita = (receitasModel.idReceita + 1);
-                    Navigator.of(context).popAndPushNamed(
-                      '/listReceitas',
-                      arguments: receitasModel,
-                    );
-                  } else {
-                    Navigator.of(context).pop();
-                  }
-                },
-              );
+              setState(() {
+                controller.addToList(controller.receitasList.value.length + 1,
+                    _nomeReceita, _ingredients, _prepare);
+                print(controller.receitasList);
+                Navigator.of(context).popAndPushNamed('/listaReceitas');
+              });
             },
             child: const Text('Salvar'),
           ),

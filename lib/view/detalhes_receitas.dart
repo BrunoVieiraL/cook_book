@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:cooking_agenda/models/receitas_model.dart';
+import 'package:flutter/material.dart';
 
 class DetalhesReceitas extends StatefulWidget {
   const DetalhesReceitas({Key? key}) : super(key: key);
@@ -12,31 +11,22 @@ class DetalhesReceitas extends StatefulWidget {
 class _DetalhesReceitasState extends State<DetalhesReceitas> {
   @override
   Widget build(BuildContext context) {
-    late ReceitasModel argsFromListaReceitas =
-        ModalRoute.of(context)?.settings.arguments as ReceitasModel;
+    ReceitasModel argsFromListaReceitas =
+        ModalRoute.of(context)!.settings.arguments as ReceitasModel;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          argsFromListaReceitas.nomeReceita,
+          argsFromListaReceitas.nomeReceita as String,
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-            ),
-          ),
-        ],
       ),
       body: Column(
         children: [
           Text(
-            argsFromListaReceitas.ingredientes ,
+            argsFromListaReceitas.ingredientes as String,
           ),
           Text(
-            argsFromListaReceitas.modoPreparo ,
+            argsFromListaReceitas.modoPreparo as String,
           ),
         ],
       ),

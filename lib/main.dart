@@ -3,7 +3,7 @@ import 'package:cooking_agenda/view/lista_receitas_page.dart';
 import 'package:flutter/material.dart';
 
 import 'view/detalhes_receitas.dart';
-import 'view/settings_page.dart';
+import 'view/config_page.dart';
 import 'view/splash_page.dart';
 
 void main() {
@@ -16,13 +16,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (_) => const SplashPage(),
-        '/listReceitas': (_) => const ListaReceitas(),
-        '/addReceitas': (_) => const AddReceitas(),
+        '/listaReceitas': (_) => const ListaReceitas(),
+        '/adicionarReceitas': (_) => const AdicionarReceitas(),
         '/detalhesReceitas': (_) => const DetalhesReceitas(),
-        '/settings': (_) => const SettingsPage(),
+        '/config': (_) => const ConfigPage(),
       },
     );
   }

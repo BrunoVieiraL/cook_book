@@ -13,7 +13,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     Timer(const Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacementNamed('/listReceitas');
+      Navigator.of(context).pushReplacementNamed('/listaReceitas');
     });
     super.initState();
   }
