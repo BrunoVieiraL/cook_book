@@ -1,6 +1,9 @@
-import 'package:cooking_agenda/controllers/receitas_controller.dart';
+import 'package:cooking_agenda/database/receitas_database.dart';
 import 'package:cooking_agenda/models/receitas_model.dart';
+import 'package:cooking_agenda/view/detalhes_receitas.dart';
 import 'package:flutter/material.dart';
+
+import 'editar_receitas.dart';
 
 class ListaReceitas extends StatefulWidget {
   const ListaReceitas({Key? key}) : super(key: key);
@@ -10,44 +13,69 @@ class ListaReceitas extends StatefulWidget {
 }
 
 class _ListaReceitasState extends State<ListaReceitas> {
-  ReceitasController controller = ReceitasController();
+  late List<ReceitasModel> receitas;
+  bool isLoading = false;
+  @override
+  void initState() {
+    refreshReceitas();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    RecipeDatabase.instance.close();
+    super.dispose();
+  }
+
+  Future refreshReceitas() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    // ignore: unnecessary_this
+    this.receitas = await RecipeDatabase.instance.readAllRecipes();
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Receitas'),
       ),
-      body: controller.receitasList.value.isEmpty
+      body: receitas.isEmpty
           ? const Center(
-              child: Text('Nenhuma receita'),
+              child: CircularProgressIndicator(),
             )
           : Column(
               children: [
-                ValueListenableBuilder<List<ReceitasModel>>(
-                  valueListenable: controller.receitasList,
-                  builder: (_, list, __) {
-                    return ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: list.length,
-                      itemBuilder: (_, index) => ListTile(
-                        leading: Text(list[index].idReceita.toString()),
-                        title: Text(list[index].nomeReceita as String),
-                        onTap: () {
-                          setState(() {
-                            Navigator.of(context).pushNamed('/detalhesReceitas',
-                                arguments: list[index]);
-                          });
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: receitas.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        leading: Text(receitas[index].toString()),
+                        title: Text(receitas[index].nomeReceita),
+                        onTap: () async {
+                          await Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) {
+                            return DetalhesReceitas(
+                                idReceita: receitas[index].idReceita!);
+                          }));
                         },
-                      ),
-                    );
-                  },
-                ),
+                      );
+                    }),
               ],
             ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context).pushReplacementNamed('/adicionarReceitas');
+          onPressed: () async {
+            if (isLoading) return;
+            await Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const EditarReceitas(),
+            ));
+            refreshReceitas();
           },
           child: const Icon(Icons.restaurant_menu_rounded)),
     );
