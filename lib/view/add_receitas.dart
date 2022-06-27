@@ -2,32 +2,34 @@ import 'package:cooking_agenda/database/receitas_database.dart';
 import 'package:cooking_agenda/models/receitas_model.dart';
 import 'package:flutter/material.dart';
 
-class EditarReceitas extends StatefulWidget {
-  const EditarReceitas({Key? key}) : super(key: key);
+class AddReceitaPage extends StatefulWidget {
+  const AddReceitaPage({Key? key}) : super(key: key);
 
   @override
-  State<EditarReceitas> createState() => _EditarReceitasState();
+  State<AddReceitaPage> createState() => _AddReceitaPageState();
 }
 
-class _EditarReceitasState extends State<EditarReceitas> {
+class _AddReceitaPageState extends State<AddReceitaPage> {
   TextEditingController nomeReceita = TextEditingController();
   TextEditingController ingredientes = TextEditingController();
   TextEditingController modoPreparo = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(actions: [
         ElevatedButton(
-            onPressed: () async {
-              setState(() {
-                RecipeDatabase.instance.update(ReceitasModel(
-                    nomeReceita: nomeReceita.text,
-                    ingredientes: ingredientes.text,
-                    modoPreparo: modoPreparo.text));
-                Navigator.of(context).pop();
-              });
-            },
-            child: const Text('Salvar alteração'))
+          onPressed: () async {
+            setState(() {
+              RecipeDatabase.instance.add(ReceitasModel(
+                  nomeReceita: nomeReceita.text,
+                  ingredientes: ingredientes.text,
+                  modoPreparo: modoPreparo.text));
+              Navigator.of(context).pop();
+            });
+          },
+          child: const Text('Salvar'),
+        ),
       ]),
       body: Column(
         children: [

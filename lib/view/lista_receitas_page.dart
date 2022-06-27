@@ -1,9 +1,9 @@
 import 'package:cooking_agenda/database/receitas_database.dart';
 import 'package:cooking_agenda/models/receitas_model.dart';
+import 'package:cooking_agenda/view/add_receitas.dart';
 import 'package:cooking_agenda/view/detalhes_receitas.dart';
+import 'package:cooking_agenda/view/editar_receitas.dart';
 import 'package:flutter/material.dart';
-
-import 'editar_receitas.dart';
 
 class ListaReceitas extends StatefulWidget {
   const ListaReceitas({Key? key}) : super(key: key);
@@ -13,69 +13,92 @@ class ListaReceitas extends StatefulWidget {
 }
 
 class _ListaReceitasState extends State<ListaReceitas> {
-  late List<ReceitasModel> receitas;
-  bool isLoading = false;
-  @override
-  void initState() {
-    refreshReceitas();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    RecipeDatabase.instance.close();
-    super.dispose();
-  }
-
-  Future refreshReceitas() async {
-    setState(() {
-      isLoading = true;
-    });
-
-    // ignore: unnecessary_this
-    this.receitas = await RecipeDatabase.instance.readAllRecipes();
-    setState(() {
-      isLoading = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Receitas'),
       ),
-      body: receitas.isEmpty
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : Column(
-              children: [
-                ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: receitas.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        leading: Text(receitas[index].toString()),
-                        title: Text(receitas[index].nomeReceita),
-                        onTap: () async {
-                          await Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
-                            return DetalhesReceitas(
-                                idReceita: receitas[index].idReceita!);
-                          }));
-                        },
-                      );
-                    }),
-              ],
-            ),
+      body: FutureBuilder<List<ReceitasModel>>(
+        future: RecipeDatabase.instance.getReceitas(),
+        builder: (BuildContext context,
+            AsyncSnapshot<List<ReceitasModel>> snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: Column(
+                children: const [
+                  CircularProgressIndicator(),
+                  Text('Carregando receitas'),
+                ],
+              ),
+            );
+          }
+          return snapshot.data!.isEmpty
+              ? const Center(
+                  child: Text('Nenhuma receita adicionada'),
+                )
+              : ListView.builder(
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    setState(() {
+                      snapshot.data!.map((recipes) {
+                        return Center(
+                          child: Dismissible(
+                            background: Container(
+                              color: Colors.green,
+                              child: const Icon(Icons.edit),
+                            ),
+                            secondaryBackground: Container(
+                              color: Colors.red,
+                              child: const Icon(Icons.delete),
+                            ),
+                            onDismissed: (direction) {
+                              if (direction == DismissDirection.startToEnd) {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const EditarReceitas();
+                                    },
+                                  ),
+                                );
+                              }
+                              if (direction == DismissDirection.endToStart) {
+                                setState(() {
+                                  RecipeDatabase.instance
+                                      .remove(recipes.idReceita!);
+                                });
+                              }
+                            },
+                            key: ValueKey<int>(
+                                snapshot.data![index].idReceita as int),
+                            child: ListTile(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (context) {
+                                    return const DetalhesReceitas();
+                                  }, settings: RouteSettings(arguments: recipes)),
+                                );
+                              },
+                              leading: Text(recipes.idReceita.toString()),
+                              title: Text(recipes.nomeReceita),
+                            ),
+                          ),
+                        );
+                      }).toList();
+                    });
+
+                    return const Center(
+                      child: Text('Erro'),
+                    );
+                  },
+                );
+        },
+      ),
       floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            if (isLoading) return;
-            await Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const EditarReceitas(),
-            ));
-            refreshReceitas();
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return const AddReceitaPage();
+            }));
           },
           child: const Icon(Icons.restaurant_menu_rounded)),
     );

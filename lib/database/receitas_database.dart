@@ -1,92 +1,55 @@
+import 'dart:io';
+
+import 'package:cooking_agenda/models/receitas_model.dart';
 import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../models/receitas_model.dart';
-
 class RecipeDatabase {
-  static final RecipeDatabase instance = RecipeDatabase._init();
+  RecipeDatabase._privateConstructor();
+  static final RecipeDatabase instance = RecipeDatabase._privateConstructor();
+
   static Database? _database;
-  RecipeDatabase._init();
+  Future<Database> get database async => _database ?? await _initDatabase();
 
-  Future<Database> get database async {
-    if (_database != null) {
-      return _database!;
-    } else {
-      _database = await _initDatabase('receitas_databas.db');
-      return _database!;
-    }
+  Future<Database> _initDatabase() async {
+    Directory documentsirectory = await getApplicationDocumentsDirectory();
+    String path = join(documentsirectory.path, 'recipes.db');
+    return await openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
-  Future<Database> _initDatabase(String filepath) async {
-    final databasePath = await getDatabasesPath();
-    final path = join(databasePath, filepath);
-    return await openDatabase(path, version: 1, onCreate: _creatDataBase);
+  Future _onCreate(Database db, int version) async {
+    await db.execute('''
+    CREATE TABLE recipes(
+    idReceita INTERGER PRIMARY KEY,
+    nomeReceita TEXT,
+    ingredientes TEXT,
+    modoPreparo TEXT)
+  ''');
   }
 
-  Future _creatDataBase(Database db, int version) async {
-    const idReceitaType = 'INTERGER PRIMARY KEY AUTOINCREMENT';
-    const textType = 'TEXT NOT NULL';
-
-    await db.execute('''CREATE TABLE $tableRecipes (
-          ${RecipeFields.idReceita}$idReceitaType,
-          ${RecipeFields.nomeReceita}$textType,
-          ${RecipeFields.ingredientes}$textType,
-          ${RecipeFields.modoPreparo}$textType,
-        )''');
+  Future<List<ReceitasModel>> getReceitas() async {
+    Database db = await instance.database;
+    var recipes = await db.query('recipes', orderBy: 'nomeReceita');
+    List<ReceitasModel> recipeList = recipes.isNotEmpty
+        ? recipes.map((elemnet) => ReceitasModel.fromMap(elemnet)).toList()
+        : [];
+    return recipeList;
   }
 
-  Future close() async {
-    final db = await instance.database;
-    db.close();
+  Future<int> add(ReceitasModel receita) async {
+    Database db = await instance.database;
+    return await db.insert('recipes', receita.toMap());
   }
 
-  Future<ReceitasModel> create(ReceitasModel receitasModel) async {
-    final db = await instance.database;
-    final id = await db.insert(
-      tableRecipes,
-      receitasModel.toJson(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-    return receitasModel.copy(idReceita: id);
+  Future<int> remove(int id) async {
+    Database db = await instance.database;
+    return await db.delete('recipe', where: 'idReceita = ?', whereArgs: [id]);
   }
 
-  Future<ReceitasModel> readRecipe(int id) async {
-    final db = await instance.database;
-    final maps = await db.query(
-      tableRecipes,
-      columns: RecipeFields.values,
-      where: '${RecipeFields.idReceita} = ?',
-      whereArgs: [id],
-    );
-    if (maps.isNotEmpty) {
-      return ReceitasModel.fromJson(maps.first);
-    } else {
-      throw Exception('ID $id not found');
-    }
-  }
-
-  Future<List<ReceitasModel>> readAllRecipes() async {
-    final db = await instance.database;
-    final result = await db.query(tableRecipes);
-    return result.map((json) => ReceitasModel.fromJson(json)).toList();
-  }
-
-  Future<int> update(ReceitasModel receitasModel) async {
-    final db = await instance.database;
-    return db.update(
-      tableRecipes,
-      receitasModel.toJson(),
-      where: '${RecipeFields.idReceita} = ?',
-      whereArgs: [receitasModel.idReceita],
-    );
-  }
-
-  Future<int> delete(int id) async {
-    final db = await instance.database;
-    return await db.delete(
-      tableRecipes,
-      where: '${RecipeFields.idReceita} = ?',
-      whereArgs: [id],
-    );
+  Future<int> update(ReceitasModel receita) async {
+    Database db = await instance.database;
+    return await db.update('recipes', receita.toMap(),
+        where: 'idReceita = ?', whereArgs: [receita.idReceita]);
   }
 }
