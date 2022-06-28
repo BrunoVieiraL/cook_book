@@ -32,21 +32,4 @@ class _DetalhesReceitasState extends State<DetalhesReceitas> {
       ),
     );
   }
-
-  Widget deleteButton() {
-    return IconButton(
-        onPressed: () async {
-          Navigator.of(context).pop();
-        },
-        icon: const Icon(Icons.delete));
-  }
-
-  Widget editButton() {
-    return IconButton(
-      icon: const Icon(
-        Icons.edit,
-      ),
-      onPressed: () async {},
-    );
-  }
 }

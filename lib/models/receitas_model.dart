@@ -1,17 +1,17 @@
 class ReceitasModel {
-  int? idReceita;
+  int? id;
   String nomeReceita;
   String ingredientes;
   String modoPreparo;
   ReceitasModel(
-      {this.idReceita,
+      {this.id,
       required this.nomeReceita,
       required this.ingredientes,
       required this.modoPreparo});
 
   factory ReceitasModel.fromMap(Map<String, dynamic> json) {
     return ReceitasModel(
-      idReceita: json['idReceita'],
+      id: json['id'],
       nomeReceita: json['nomeReceita'],
       ingredientes: json['ingredientes'],
       modoPreparo: json['modoPreparo'],
@@ -19,7 +19,7 @@ class ReceitasModel {
   }
   Map<String, dynamic> toMap() {
     return {
-      'idReceita': idReceita,
+      'id': id,
       'nomeReceita': nomeReceita,
       'ingredientes': ingredientes,
       'modoPreparo': modoPreparo

@@ -1,9 +1,12 @@
-import 'package:cooking_agenda/database/receitas_database.dart';
-import 'package:cooking_agenda/models/receitas_model.dart';
 import 'package:flutter/material.dart';
 
+import 'package:cooking_agenda/database/receitas_database.dart';
+import 'package:cooking_agenda/models/receitas_model.dart';
+
 class AddReceitaPage extends StatefulWidget {
-  const AddReceitaPage({Key? key}) : super(key: key);
+  const AddReceitaPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<AddReceitaPage> createState() => _AddReceitaPageState();

@@ -21,7 +21,7 @@ class RecipeDatabase {
   Future _onCreate(Database db, int version) async {
     await db.execute('''
     CREATE TABLE recipes(
-    idReceita INTERGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     nomeReceita TEXT,
     ingredientes TEXT,
     modoPreparo TEXT)
@@ -32,7 +32,7 @@ class RecipeDatabase {
     Database db = await instance.database;
     var recipes = await db.query('recipes', orderBy: 'nomeReceita');
     List<ReceitasModel> recipeList = recipes.isNotEmpty
-        ? recipes.map((elemnet) => ReceitasModel.fromMap(elemnet)).toList()
+        ? recipes.map((element) => ReceitasModel.fromMap(element)).toList()
         : [];
     return recipeList;
   }
@@ -44,12 +44,12 @@ class RecipeDatabase {
 
   Future<int> remove(int id) async {
     Database db = await instance.database;
-    return await db.delete('recipe', where: 'idReceita = ?', whereArgs: [id]);
+    return await db.delete('recipe', where: 'id = ?', whereArgs: [id]);
   }
 
   Future<int> update(ReceitasModel receita) async {
     Database db = await instance.database;
     return await db.update('recipes', receita.toMap(),
-        where: 'idReceita = ?', whereArgs: [receita.idReceita]);
+        where: 'id = ?', whereArgs: [receita.id]);
   }
 }

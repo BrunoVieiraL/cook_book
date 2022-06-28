@@ -40,57 +40,57 @@ class _ListaReceitasState extends State<ListaReceitas> {
               : ListView.builder(
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    setState(() {
-                      snapshot.data!.map((recipes) {
-                        return Center(
-                          child: Dismissible(
-                            background: Container(
-                              color: Colors.green,
-                              child: const Icon(Icons.edit),
-                            ),
-                            secondaryBackground: Container(
-                              color: Colors.red,
-                              child: const Icon(Icons.delete),
-                            ),
-                            onDismissed: (direction) {
-                              if (direction == DismissDirection.startToEnd) {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return const EditarReceitas();
-                                    },
-                                  ),
-                                );
-                              }
-                              if (direction == DismissDirection.endToStart) {
-                                setState(() {
-                                  RecipeDatabase.instance
-                                      .remove(recipes.idReceita!);
-                                });
-                              }
-                            },
-                            key: ValueKey<int>(
-                                snapshot.data![index].idReceita as int),
-                            child: ListTile(
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (context) {
-                                    return const DetalhesReceitas();
-                                  }, settings: RouteSettings(arguments: recipes)),
-                                );
-                              },
-                              leading: Text(recipes.idReceita.toString()),
-                              title: Text(recipes.nomeReceita),
-                            ),
+                    snapshot.data!.map((recipes) {
+                      return Center(
+                        child: Dismissible(
+                          background: Container(
+                            color: Colors.green,
+                            child: const Icon(Icons.edit),
                           ),
-                        );
-                      }).toList();
-                    });
+                          secondaryBackground: Container(
+                            color: Colors.red,
+                            child: const Icon(Icons.delete),
+                          ),
+                          onDismissed: (direction) {
+                            if (direction == DismissDirection.startToEnd) {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const EditarReceitas();
+                                  },
+                                ),
+                              );
+                            }
+                            if (direction == DismissDirection.endToStart) {
+                              setState(() {
+                                RecipeDatabase.instance.remove(recipes.id!);
+                              });
+                            }
+                          },
+                          key: ValueKey<int>(snapshot.data![index].id as int),
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) {
+                                      return const DetalhesReceitas();
+                                    },
+                                    settings:
+                                        RouteSettings(arguments: recipes)),
+                              );
+                            },
+                            leading: Text(recipes.id.toString()),
+                            title: Text(recipes.nomeReceita),
+                          ),
+                        ),
+                      );
+                    }).toList();
 
                     return const Center(
                       child: Text('Erro'),
                     );
                   },
+                  
                 );
         },
       ),
