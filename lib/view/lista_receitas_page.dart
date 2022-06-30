@@ -1,9 +1,11 @@
 import 'package:cooking_agenda/database/receitas_database.dart';
 import 'package:cooking_agenda/models/receitas_model.dart';
-import 'package:cooking_agenda/view/add_receitas.dart';
 import 'package:cooking_agenda/view/detalhes_receitas.dart';
-import 'package:cooking_agenda/view/editar_receitas.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+
+import 'add_receitas.dart';
+import 'editar_receitas.dart';
 
 class ListaReceitas extends StatefulWidget {
   const ListaReceitas({Key? key}) : super(key: key);
@@ -37,37 +39,53 @@ class _ListaReceitasState extends State<ListaReceitas> {
               ? const Center(
                   child: Text('Nenhuma receita adicionada'),
                 )
-              : ListView.builder(
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    snapshot.data!.map((recipes) {
-                      return Center(
-                        child: Dismissible(
-                          background: Container(
-                            color: Colors.green,
-                            child: const Icon(Icons.edit),
+              : ListView(
+                  shrinkWrap: true,
+                  children: snapshot.data!.map((recipes) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Slidable(
+                          key: ValueKey<int>(recipes.id!),
+                          startActionPane: ActionPane(
+                            dragDismissible: false,
+                            children: [
+                              SlidableAction(
+                                  backgroundColor: Colors.green,
+                                  icon: Icons.edit,
+                                  onPressed: (BuildContext context) {
+                                    setState(() {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              settings: RouteSettings(
+                                                  arguments: recipes.id),
+                                              builder: (context) {
+                                                return const EditarReceitas();
+                                              }));
+                                    });
+                                  }),
+                            ],
+                            motion: const ScrollMotion(),
+                            dismissible: DismissiblePane(onDismissed: () {}),
                           ),
-                          secondaryBackground: Container(
-                            color: Colors.red,
-                            child: const Icon(Icons.delete),
+                          endActionPane: ActionPane(
+                            dragDismissible: true,
+                            children: [
+                              SlidableAction(
+                                backgroundColor: Colors.red,
+                                icon: Icons.delete,
+                                onPressed: ((BuildContext context) {
+                                  setState(() {
+                                    RecipeDatabase.instance.remove(recipes.id!);
+                                  });
+                                }),
+                              ),
+                            ],
+                            motion: const ScrollMotion(),
+                            dismissible: DismissiblePane(
+                              onDismissed: () {},
+                            ),
                           ),
-                          onDismissed: (direction) {
-                            if (direction == DismissDirection.startToEnd) {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return const EditarReceitas();
-                                  },
-                                ),
-                              );
-                            }
-                            if (direction == DismissDirection.endToStart) {
-                              setState(() {
-                                RecipeDatabase.instance.remove(recipes.id!);
-                              });
-                            }
-                          },
-                          key: ValueKey<int>(snapshot.data![index].id as int),
                           child: ListTile(
                             onTap: () {
                               Navigator.of(context).push(
@@ -79,19 +97,12 @@ class _ListaReceitasState extends State<ListaReceitas> {
                                         RouteSettings(arguments: recipes)),
                               );
                             },
-                            leading: Text(recipes.id.toString()),
                             title: Text(recipes.nomeReceita),
                           ),
                         ),
-                      );
-                    }).toList();
-
-                    return const Center(
-                      child: Text('Erro'),
+                      ],
                     );
-                  },
-                  
-                );
+                  }).toList());
         },
       ),
       floatingActionButton: FloatingActionButton(

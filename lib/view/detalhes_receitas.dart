@@ -1,4 +1,5 @@
 import 'package:cooking_agenda/models/receitas_model.dart';
+import 'package:cooking_agenda/view/editar_receitas.dart';
 
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,7 @@ class _DetalhesReceitasState extends State<DetalhesReceitas> {
           ),
         ],
       ),
+      
     );
   }
 }

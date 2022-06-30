@@ -10,7 +10,7 @@ class RecipeDatabase {
   static final RecipeDatabase instance = RecipeDatabase._privateConstructor();
 
   static Database? _database;
-  Future<Database> get database async => _database ?? await _initDatabase();
+  Future<Database> get database async => _database ??= await _initDatabase();
 
   Future<Database> _initDatabase() async {
     Directory documentsirectory = await getApplicationDocumentsDirectory();
@@ -44,7 +44,7 @@ class RecipeDatabase {
 
   Future<int> remove(int id) async {
     Database db = await instance.database;
-    return await db.delete('recipe', where: 'id = ?', whereArgs: [id]);
+    return await db.delete('recipes', where: 'id = ?', whereArgs: [id]);
   }
 
   Future<int> update(ReceitasModel receita) async {

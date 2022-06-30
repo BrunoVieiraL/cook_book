@@ -13,19 +13,23 @@ class _EditarReceitasState extends State<EditarReceitas> {
   TextEditingController nomeReceita = TextEditingController();
   TextEditingController ingredientes = TextEditingController();
   TextEditingController modoPreparo = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    int argsIDFromHomePage =
+        ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
       appBar: AppBar(actions: [
         ElevatedButton(
             onPressed: () async {
               setState(() {
                 RecipeDatabase.instance.update(ReceitasModel(
+                    id: argsIDFromHomePage,
                     nomeReceita: nomeReceita.text,
                     ingredientes: ingredientes.text,
                     modoPreparo: modoPreparo.text));
-                Navigator.of(context).pop();
               });
+              Navigator.of(context).pop();
             },
             child: const Text('Salvar alteração'))
       ]),
