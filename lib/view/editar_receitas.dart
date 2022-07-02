@@ -1,5 +1,6 @@
 import 'package:cooking_agenda/database/receitas_database.dart';
 import 'package:cooking_agenda/models/receitas_model.dart';
+import 'package:cooking_agenda/view/lista_receitas_page.dart';
 import 'package:flutter/material.dart';
 
 class EditarReceitas extends StatefulWidget {
@@ -16,34 +17,53 @@ class _EditarReceitasState extends State<EditarReceitas> {
 
   @override
   Widget build(BuildContext context) {
-    int argsIDFromHomePage =
-        ModalRoute.of(context)!.settings.arguments as int;
+    ReceitasModel argsIDFromHomePage =
+        ModalRoute.of(context)!.settings.arguments as ReceitasModel;
     return Scaffold(
-      appBar: AppBar(actions: [
-        ElevatedButton(
-            onPressed: () async {
-              setState(() {
-                RecipeDatabase.instance.update(ReceitasModel(
-                    id: argsIDFromHomePage,
-                    nomeReceita: nomeReceita.text,
-                    ingredientes: ingredientes.text,
-                    modoPreparo: modoPreparo.text));
-              });
-              Navigator.of(context).pop();
+      appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context)
+                  .pushReplacement(MaterialPageRoute(builder: (context) {
+                return const ListaReceitas();
+              }));
             },
-            child: const Text('Salvar alteração'))
-      ]),
+          ),
+          actions: [
+            ElevatedButton(
+                onPressed: () async {
+                  setState(() {
+                    RecipeDatabase.instance.update(ReceitasModel(
+                        id: argsIDFromHomePage.id,
+                        nomeReceita: nomeReceita.text,
+                        ingredientes: ingredientes.text,
+                        modoPreparo: modoPreparo.text));
+                  });
+                  Navigator.of(context)
+                      .pushReplacement(MaterialPageRoute(builder: (context) {
+                    return const ListaReceitas();
+                  }));
+                },
+                child: const Text('Salvar alteração'))
+          ]),
       body: Column(
         children: [
           TextField(
+            decoration:
+                InputDecoration(hintText: argsIDFromHomePage.nomeReceita),
             controller: nomeReceita,
             textInputAction: TextInputAction.next,
           ),
           TextField(
+            decoration:
+                InputDecoration(hintText: argsIDFromHomePage.ingredientes),
             controller: ingredientes,
             textInputAction: TextInputAction.next,
           ),
           TextField(
+            decoration:
+                InputDecoration(hintText: argsIDFromHomePage.modoPreparo),
             controller: modoPreparo,
             textInputAction: TextInputAction.done,
           ),

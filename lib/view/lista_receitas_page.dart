@@ -55,10 +55,10 @@ class _ListaReceitasState extends State<ListaReceitas> {
                                   icon: Icons.edit,
                                   onPressed: (BuildContext context) {
                                     setState(() {
-                                      Navigator.of(context).push(
+                                      Navigator.of(context).pushReplacement(
                                           MaterialPageRoute(
                                               settings: RouteSettings(
-                                                  arguments: recipes.id),
+                                                  arguments: recipes),
                                               builder: (context) {
                                                 return const EditarReceitas();
                                               }));
@@ -66,7 +66,6 @@ class _ListaReceitasState extends State<ListaReceitas> {
                                   }),
                             ],
                             motion: const ScrollMotion(),
-                            dismissible: DismissiblePane(onDismissed: () {}),
                           ),
                           endActionPane: ActionPane(
                             dragDismissible: true,
@@ -107,7 +106,8 @@ class _ListaReceitasState extends State<ListaReceitas> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            Navigator.of(context)
+                .pushReplacement(MaterialPageRoute(builder: (context) {
               return const AddReceitaPage();
             }));
           },

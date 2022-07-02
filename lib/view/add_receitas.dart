@@ -1,3 +1,4 @@
+import 'package:cooking_agenda/view/lista_receitas_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cooking_agenda/database/receitas_database.dart';
@@ -20,20 +21,33 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: [
-        ElevatedButton(
-          onPressed: () async {
-            setState(() {
-              RecipeDatabase.instance.add(ReceitasModel(
-                  nomeReceita: nomeReceita.text,
-                  ingredientes: ingredientes.text,
-                  modoPreparo: modoPreparo.text));
-              Navigator.of(context).pop();
-            });
-          },
-          child: const Text('Salvar'),
-        ),
-      ]),
+      appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context)
+                  .pushReplacement(MaterialPageRoute(builder: (context) {
+                return const ListaReceitas();
+              }));
+            },
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () async {
+                setState(() {
+                  RecipeDatabase.instance.add(ReceitasModel(
+                      nomeReceita: nomeReceita.text,
+                      ingredientes: ingredientes.text,
+                      modoPreparo: modoPreparo.text));
+                  Navigator.of(context)
+                      .pushReplacement(MaterialPageRoute(builder: (context) {
+                    return const ListaReceitas();
+                  }));
+                });
+              },
+              child: const Text('Salvar'),
+            ),
+          ]),
       body: Column(
         children: [
           TextField(
