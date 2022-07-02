@@ -40,66 +40,57 @@ class _ListaReceitasState extends State<ListaReceitas> {
                   child: Text('Nenhuma receita adicionada'),
                 )
               : ListView(
-                  shrinkWrap: true,
+                  shrinkWrap: false,
                   children: snapshot.data!.map((recipes) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Slidable(
-                          key: ValueKey<int>(recipes.id!),
-                          startActionPane: ActionPane(
-                            dragDismissible: false,
-                            children: [
-                              SlidableAction(
-                                  backgroundColor: Colors.green,
-                                  icon: Icons.edit,
-                                  onPressed: (BuildContext context) {
-                                    setState(() {
-                                      Navigator.of(context).pushReplacement(
-                                          MaterialPageRoute(
-                                              settings: RouteSettings(
-                                                  arguments: recipes),
-                                              builder: (context) {
-                                                return const EditarReceitas();
-                                              }));
-                                    });
-                                  }),
-                            ],
-                            motion: const ScrollMotion(),
+                    return Slidable(
+                      key: ValueKey<int>(recipes.id!),
+                      endActionPane: ActionPane(
+                        dragDismissible: false,
+                        children: [
+                          SlidableAction(
+                              padding: const EdgeInsets.only(right: 5),
+                              backgroundColor: Colors.green,
+                              icon: Icons.edit,
+                              onPressed: (BuildContext context) {
+                                setState(() {
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                          settings:
+                                              RouteSettings(arguments: recipes),
+                                          builder: (context) {
+                                            return const EditarReceitas();
+                                          }));
+                                });
+                              }),
+                          SlidableAction(
+                            backgroundColor: Colors.redAccent.shade400,
+                            icon: Icons.delete,
+                            onPressed: ((BuildContext context) {
+                              setState(() {
+                                RecipeDatabase.instance.remove(recipes.id!);
+                              });
+                            }),
                           ),
-                          endActionPane: ActionPane(
-                            dragDismissible: true,
-                            children: [
-                              SlidableAction(
-                                backgroundColor: Colors.red,
-                                icon: Icons.delete,
-                                onPressed: ((BuildContext context) {
-                                  setState(() {
-                                    RecipeDatabase.instance.remove(recipes.id!);
-                                  });
-                                }),
-                              ),
-                            ],
-                            motion: const ScrollMotion(),
-                            dismissible: DismissiblePane(
-                              onDismissed: () {},
-                            ),
-                          ),
-                          child: ListTile(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (context) {
-                                      return const DetalhesReceitas();
-                                    },
-                                    settings:
-                                        RouteSettings(arguments: recipes)),
-                              );
-                            },
-                            title: Text(recipes.nomeReceita),
-                          ),
+                        ],
+                        motion: const StretchMotion(),
+                        dismissible: DismissiblePane(
+                          onDismissed: () {},
                         ),
-                      ],
+                      ),
+                      child: ListTile(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) {
+                                  return const DetalhesReceitas();
+                                },
+                                settings: RouteSettings(arguments: recipes)),
+                          );
+                        },
+                        title: Text(
+                          recipes.nomeReceita,
+                        ),
+                      ),
                     );
                   }).toList());
         },

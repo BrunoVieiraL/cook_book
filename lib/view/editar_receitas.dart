@@ -3,6 +3,10 @@ import 'package:cooking_agenda/models/receitas_model.dart';
 import 'package:cooking_agenda/view/lista_receitas_page.dart';
 import 'package:flutter/material.dart';
 
+import '../components/editar_receitas_colunm_component.dart';
+
+
+
 class EditarReceitas extends StatefulWidget {
   const EditarReceitas({Key? key}) : super(key: key);
 
@@ -47,28 +51,11 @@ class _EditarReceitasState extends State<EditarReceitas> {
                 },
                 child: const Text('Salvar alteração'))
           ]),
-      body: Column(
-        children: [
-          TextField(
-            decoration:
-                InputDecoration(hintText: argsIDFromHomePage.nomeReceita),
-            controller: nomeReceita,
-            textInputAction: TextInputAction.next,
-          ),
-          TextField(
-            decoration:
-                InputDecoration(hintText: argsIDFromHomePage.ingredientes),
-            controller: ingredientes,
-            textInputAction: TextInputAction.next,
-          ),
-          TextField(
-            decoration:
-                InputDecoration(hintText: argsIDFromHomePage.modoPreparo),
-            controller: modoPreparo,
-            textInputAction: TextInputAction.done,
-          ),
-        ],
-      ),
+      body: EditarouAdicionarReceitasColunmComponent(
+          nomeReceita: nomeReceita,
+          argsIDFromHomePage: argsIDFromHomePage,
+          ingredientes: ingredientes,
+          modoPreparo: modoPreparo),
     );
   }
 }
