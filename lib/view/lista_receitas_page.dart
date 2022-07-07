@@ -20,6 +20,14 @@ class _ListaReceitasState extends State<ListaReceitas> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Receitas'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed('/infoPage');
+            },
+            icon: const Icon(Icons.info),
+          ),
+        ],
       ),
       body: FutureBuilder<List<ReceitasModel>>(
         future: RecipeDatabase.instance.getReceitas(),
