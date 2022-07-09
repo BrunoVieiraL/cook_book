@@ -23,9 +23,9 @@ class _ListaReceitasState extends State<ListaReceitas> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed('/infoPage');
+              Navigator.of(context).pushNamed('/configPage');
             },
-            icon: const Icon(Icons.info),
+            icon: const Icon(Icons.settings),
           ),
         ],
       ),

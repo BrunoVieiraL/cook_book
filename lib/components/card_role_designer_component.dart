@@ -14,55 +14,50 @@ class CardDeseignerRoleComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        color: Colors.grey,
-        child: Column(
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  role + ': ',
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w600),
-                ),
-                Text(
-                  fullName,
-                  style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.w400),
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                const CircleAvatar(
-                  radius: 30,
-                  child: Image(image: AssetImage('assets/instagram.png')),
-                ),
-              ],
+            Text(
+              role + ': ',
+              style: const TextStyle(
+                  fontSize: 16, fontWeight: FontWeight.w600),
+            ),
+            Text(
+              fullName,
+              style: const TextStyle(
+                  fontSize: 15, fontWeight: FontWeight.w400),
             ),
             const SizedBox(
-              height: 10,
+              width: 15,
             ),
-            const CardSocialWidget(
-              text: 'githublink',
-              iconPath: 'assets/behance.png',
+            const CircleAvatar(
+              radius: 30,
+              backgroundImage: AssetImage('assets/thayslobato.png'),
             ),
-            const CardSocialWidget(
-              text: 'text',
-              iconPath: 'assets/linkedin.png',
-            ),
-            const CardSocialWidget(
-              text: 'text',
-              iconPath: 'assets/gmail.png',
-            ),
-            const CardSocialWidget(
-              text: 'text',
-              iconPath: 'assets/instagram.png',
-            )
           ],
         ),
-      ),
+        const SizedBox(
+          height: 10,
+        ),
+        const CardSocialWidget(
+          text: 'githublink',
+          iconPath: 'assets/behance.png',
+        ),
+        const CardSocialWidget(
+          text: 'text',
+          iconPath: 'assets/linkedin.png',
+        ),
+        const CardSocialWidget(
+          text: 'text',
+          iconPath: 'assets/gmail.png',
+        ),
+        const CardSocialWidget(
+          text: 'text',
+          iconPath: 'assets/instagram.png',
+        )
+      ],
     );
   }
 }

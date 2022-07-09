@@ -16,11 +16,16 @@ class InfoPage extends StatelessWidget {
       body: Container(
         color: Colors.grey,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: const [
+            SizedBox(
+              height: 25,
+            ),
             CardDeveloperRoleComponent(
               role: 'Developer',
               fullName: 'Bruno Vieira',
+            ),
+            SizedBox(
+              height: 50,
             ),
             CardDeseignerRoleComponent(
               role: 'Designer UI/UX',

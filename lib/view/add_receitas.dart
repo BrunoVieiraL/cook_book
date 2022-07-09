@@ -22,47 +22,59 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.of(context)
-                    .pushReplacement(MaterialPageRoute(builder: (context) {
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) {
                   return const ListaReceitas();
-                }));
-              },
-            ),
-            actions: [
-              ElevatedButton(
-                onPressed: () async {
-                  if (nomeReceita.text.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text(
-                        'Insira ao menos o nome da receita',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      duration: Duration(seconds: 3),
-                    ));
-                  } else {
-                    setState(() {
-                      RecipeDatabase.instance.add(ReceitasModel(
-                          nomeReceita: nomeReceita.text,
-                          ingredientes: ingredientes.text,
-                          modoPreparo: modoPreparo.text));
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) {
-                        return const ListaReceitas();
-                      }));
-                    });
-                  }
                 },
-                child: const Text('Salvar'),
               ),
-            ]),
-        body: EditarouAdicionarReceitasColunmComponent(
-          nomeReceita: nomeReceita,
-          ingredientes: ingredientes,
-          modoPreparo: modoPreparo,
-        ));
+            );
+          },
+        ),
+        actions: [
+          ElevatedButton(
+            onPressed: () async {
+              if (nomeReceita.text.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'Insira ao menos o nome da receita',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    duration: Duration(seconds: 3),
+                  ),
+                );
+              } else {
+                setState(
+                  () {
+                    RecipeDatabase.instance.add(ReceitasModel(
+                        nomeReceita: nomeReceita.text,
+                        ingredientes: ingredientes.text,
+                        modoPreparo: modoPreparo.text));
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const ListaReceitas();
+                        },
+                      ),
+                    );
+                  },
+                );
+              }
+            },
+            child: const Text('Salvar'),
+          ),
+        ],
+      ),
+      body: EditarouAdicionarReceitasColunmComponent(
+        nomeReceita: nomeReceita,
+        ingredientes: ingredientes,
+        modoPreparo: modoPreparo,
+      ),
+    );
   }
 }

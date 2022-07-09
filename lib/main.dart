@@ -1,3 +1,4 @@
+import 'package:cooking_agenda/view/config_page.dart';
 import 'package:cooking_agenda/view/lista_receitas_page.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (_) => const SplashPage(),
         '/listaReceitas': (_) => const ListaReceitas(),
+        '/configPage': (_) => const ConfigPage(),
         '/infoPage': (_) => const InfoPage(),
       },
     );
