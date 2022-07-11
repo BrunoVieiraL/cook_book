@@ -1,5 +1,6 @@
-
+import 'package:cooking_agenda/provider/themes_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ConfigPage extends StatefulWidget {
   const ConfigPage({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class ConfigPage extends StatefulWidget {
 class _ConfigPageState extends State<ConfigPage> {
   @override
   Widget build(BuildContext context) {
-    
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(title: const Text('Configurações')),
       body: Container(
@@ -24,7 +25,7 @@ class _ConfigPageState extends State<ConfigPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Notificações'),
+                const Text('Importar'),
                 GestureDetector(
                   child: const Icon(Icons.notifications),
                   onTap: () {},
@@ -40,11 +41,11 @@ class _ConfigPageState extends State<ConfigPage> {
               children: [
                 const Text('Alterar Tema'),
                 Switch.adaptive(
-                    value: false,
-                    onChanged: (valor) {
-                      setState(() {
-                        
-                      });
+                    value: themeProvider.isDarkMode,
+                    onChanged: (value) {
+                      final provider =
+                          Provider.of<ThemeProvider>(context, listen: false);
+                      provider.toggleTheme(value);
                     })
               ],
             ),
@@ -71,7 +72,7 @@ class _ConfigPageState extends State<ConfigPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Compartilhar'),
+                const Text('Compartilhar app'),
                 GestureDetector(
                   child: const Icon(Icons.share),
                   onTap: () {},

@@ -1,6 +1,8 @@
+import 'package:cooking_agenda/provider/themes_provider.dart';
 import 'package:cooking_agenda/view/config_page.dart';
 import 'package:cooking_agenda/view/lista_receitas_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'view/info_page.dart';
 import 'view/splash_page.dart';
@@ -15,15 +17,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (_) => const SplashPage(),
-        '/listaReceitas': (_) => const ListaReceitas(),
-        '/configPage': (_) => const ConfigPage(),
-        '/infoPage': (_) => const InfoPage(),
-      },
-    );
+    return ChangeNotifierProvider(
+        create: (context) => ThemeProvider(),
+        builder: (context, _) {
+          final themeProvider = Provider.of<ThemeProvider>(context);
+          return MaterialApp(
+            themeMode: themeProvider.themeMode,
+            theme: MyThemes.lightTheme,
+            darkTheme: MyThemes.darkTheme,
+            debugShowCheckedModeBanner: false,
+            initialRoute: '/',
+            routes: {
+              '/': (_) => const SplashPage(),
+              '/listaReceitas': (_) => const ListaReceitas(),
+              '/configPage': (_) => const ConfigPage(),
+              '/infoPage': (_) => const InfoPage(),
+            },
+          );
+        });
   }
 }
