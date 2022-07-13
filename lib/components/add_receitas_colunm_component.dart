@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../models/receitas_model.dart';
 import '../widgets/textfield_widget.dart';
 
-class EditarouAdicionarReceitasColunmComponent extends StatelessWidget {
-  const EditarouAdicionarReceitasColunmComponent({
+class AddReceitasColunmComponent extends StatelessWidget {
+  const AddReceitasColunmComponent({
     Key? key,
     required this.nomeReceita,
-    this.argsIDFromHomePage,
     required this.ingredientes,
     required this.modoPreparo,
+    required this.tipoReceita,
   }) : super(key: key);
 
   final TextEditingController nomeReceita;
-  final ReceitasModel? argsIDFromHomePage;
   final TextEditingController ingredientes;
   final TextEditingController modoPreparo;
+  final TextEditingController tipoReceita;
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +23,22 @@ class EditarouAdicionarReceitasColunmComponent extends StatelessWidget {
         TextFieldCustomWidget(
           controller: nomeReceita,
           textInputAction: TextInputAction.next,
-          hintText: argsIDFromHomePage!.nomeReceita,
+          hintText: 'Nome da Receita',
         ),
         TextFieldCustomWidget(
           controller: ingredientes,
           textInputAction: TextInputAction.next,
-          hintText: argsIDFromHomePage!.ingredientes,
+          hintText: 'Ingredientes',
         ),
         TextFieldCustomWidget(
           controller: modoPreparo,
+          textInputAction: TextInputAction.next,
+          hintText: 'Modo de Preparo',
+        ),
+        TextFieldCustomWidget(
+          controller: tipoReceita,
+          hintText: 'Tipo da Receita',
           textInputAction: TextInputAction.done,
-          hintText: argsIDFromHomePage!.modoPreparo,
         ),
       ],
     );

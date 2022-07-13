@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/card_social_widget.dart';
+import '../../widgets/card_social_widget.dart';
 
 class CardDeseignerRoleComponent extends StatelessWidget {
   final String role;

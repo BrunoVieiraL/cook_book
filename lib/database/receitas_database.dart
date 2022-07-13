@@ -24,13 +24,17 @@ class RecipeDatabase {
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nomeReceita TEXT,
     ingredientes TEXT,
-    modoPreparo TEXT)
+    modoPreparo TEXT,
+    tipoReceita TEXT)
   ''');
   }
 
-  Future<List<ReceitasModel>> getReceitas() async {
+  Future<List<ReceitasModel>> getReceitas(String tipoRecipe) async {
     Database db = await instance.database;
-    var recipes = await db.query('recipes', orderBy: 'nomeReceita');
+    var recipes = await db.query('recipes',
+        orderBy: 'nomeReceita',
+        where: 'tipoReceita = ?',
+        whereArgs: [tipoRecipe]);
     List<ReceitasModel> recipeList = recipes.isNotEmpty
         ? recipes.map((element) => ReceitasModel.fromMap(element)).toList()
         : [];

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../components/card_role_designer_component.dart';
-import '../components/card_role_dev_component.dart';
+import '../components/cofig_page/card_role_designer_component.dart';
+import '../components/cofig_page/card_role_dev_component.dart';
 
 class InfoPage extends StatelessWidget {
   const InfoPage({Key? key}) : super(key: key);

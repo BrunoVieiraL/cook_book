@@ -1,5 +1,4 @@
-import 'package:cooking_agenda/components/editar_receitas_colunm_component.dart';
-import 'package:cooking_agenda/view/lista_receitas_page.dart';
+import 'package:cooking_agenda/components/add_receitas_colunm_component.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cooking_agenda/database/receitas_database.dart';
@@ -18,31 +17,29 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
   TextEditingController nomeReceita = TextEditingController();
   TextEditingController ingredientes = TextEditingController();
   TextEditingController modoPreparo = TextEditingController();
+  TextEditingController tipoReceita = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Adicionar Receita'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) {
-                  return const ListaReceitas();
-                },
-              ),
-            );
+            Navigator.of(context).pop();
           },
         ),
         actions: [
           ElevatedButton(
             onPressed: () async {
-              if (nomeReceita.text.isEmpty) {
+              if (nomeReceita.text.isEmpty &&
+                  ingredientes.text.isEmpty &&
+                  modoPreparo.text.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text(
-                      'Insira ao menos o nome da receita',
+                      'Preencha os Campos',
                       style: TextStyle(fontSize: 15),
                     ),
                     duration: Duration(seconds: 3),
@@ -51,17 +48,15 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
               } else {
                 setState(
                   () {
-                    RecipeDatabase.instance.add(ReceitasModel(
-                        nomeReceita: nomeReceita.text,
-                        ingredientes: ingredientes.text,
-                        modoPreparo: modoPreparo.text));
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const ListaReceitas();
-                        },
-                      ),
+                    RecipeDatabase.instance.add(
+                      ReceitasModel(
+                          nomeReceita: nomeReceita.text,
+                          ingredientes: ingredientes.text,
+                          modoPreparo: modoPreparo.text,
+                          tipoReceita: tipoReceita.text),
                     );
+                    Navigator.of(context).pop(
+                     );
                   },
                 );
               }
@@ -70,10 +65,11 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
           ),
         ],
       ),
-      body: EditarouAdicionarReceitasColunmComponent(
+      body: AddReceitasColunmComponent(
         nomeReceita: nomeReceita,
         ingredientes: ingredientes,
         modoPreparo: modoPreparo,
+        tipoReceita: tipoReceita,
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:cooking_agenda/provider/themes_provider.dart';
+import 'package:cooking_agenda/view/add_receitas.dart';
 import 'package:cooking_agenda/view/config_page.dart';
+import 'package:cooking_agenda/view/home_page.dart';
 import 'package:cooking_agenda/view/lista_receitas_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,13 +25,17 @@ class MyApp extends StatelessWidget {
           final themeProvider = Provider.of<ThemeProvider>(context);
           return MaterialApp(
             themeMode: themeProvider.themeMode,
-            theme: MyThemes.lightTheme,
-            darkTheme: MyThemes.darkTheme,
+            theme: Themes.lightTheme,
+            darkTheme: Themes.darkTheme,
             debugShowCheckedModeBanner: false,
             initialRoute: '/',
             routes: {
               '/': (_) => const SplashPage(),
-              '/listaReceitas': (_) => const ListaReceitas(),
+              '/homePage': (_) => const HomePage(),
+              '/listaReceitas': (_) => const ListaReceitas(
+                    tipoReceita: '',
+                  ),
+              '/addReceita': (_) => const AddReceitaPage(),
               '/configPage': (_) => const ConfigPage(),
               '/infoPage': (_) => const InfoPage(),
             },

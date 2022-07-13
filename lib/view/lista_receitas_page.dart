@@ -4,11 +4,11 @@ import 'package:cooking_agenda/view/detalhes_receitas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-import 'add_receitas.dart';
 import 'editar_receitas.dart';
 
 class ListaReceitas extends StatefulWidget {
-  const ListaReceitas({Key? key}) : super(key: key);
+  const ListaReceitas({required this.tipoReceita, Key? key}) : super(key: key);
+  final String tipoReceita;
 
   @override
   State<ListaReceitas> createState() => _ListaReceitasState();
@@ -20,17 +20,9 @@ class _ListaReceitasState extends State<ListaReceitas> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Receitas'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed('/configPage');
-            },
-            icon: const Icon(Icons.settings),
-          ),
-        ],
       ),
       body: FutureBuilder<List<ReceitasModel>>(
-        future: RecipeDatabase.instance.getReceitas(),
+        future: RecipeDatabase.instance.getReceitas(widget.tipoReceita),
         builder: (BuildContext context,
             AsyncSnapshot<List<ReceitasModel>> snapshot) {
           if (!snapshot.hasData) {
@@ -45,7 +37,10 @@ class _ListaReceitasState extends State<ListaReceitas> {
           }
           return snapshot.data!.isEmpty
               ? const Center(
-                  child: Text('Nenhuma receita adicionada'),
+                  child: Text(
+                    'Nenhuma Receita Adicionada',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 )
               : ListView(
                   shrinkWrap: false,
@@ -80,7 +75,7 @@ class _ListaReceitasState extends State<ListaReceitas> {
                             }),
                           ),
                         ],
-                        motion: const StretchMotion(),
+                        motion: const DrawerMotion(),
                         dismissible: DismissiblePane(
                           onDismissed: () {},
                         ),
@@ -103,14 +98,6 @@ class _ListaReceitasState extends State<ListaReceitas> {
                   }).toList());
         },
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            Navigator.of(context)
-                .pushReplacement(MaterialPageRoute(builder: (context) {
-              return const AddReceitaPage();
-            }));
-          },
-          child: const Icon(Icons.restaurant_menu_rounded)),
     );
   }
 }

@@ -5,28 +5,32 @@ class ThemeProvider extends ChangeNotifier {
 
   bool get isDarkMode => themeMode == ThemeMode.dark;
 
-   toggleTheme(bool isOn) {
+  toggleTheme(bool isOn) {
     themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();
   }
 }
 
-class MyThemes {
+class Themes {
   static final darkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.grey,
+    scaffoldBackgroundColor: const Color(0xFF280B57),
     brightness: Brightness.dark,
-    primaryColor: Colors.purple,
-    appBarTheme: const AppBarTheme(
-      color: Colors.purple,
+    appBarTheme: AppBarTheme(
+      color: const Color(0xFFFFFFFF).withOpacity(0.4),
     ),
+    dialogBackgroundColor: const Color(0xFFD1C3DC),
+    iconTheme: const IconThemeData(color: Colors.white),
+    primaryIconTheme: const IconThemeData(color: Colors.white),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(primary: Colors.white),
+    ),    
   );
 
   static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: const Color(0xFFFDFDFD),
     brightness: Brightness.light,
-    primaryColor: Colors.amber,
-    appBarTheme: const AppBarTheme(
-      color: Colors.blue,
+    appBarTheme: AppBarTheme(
+      color: const Color(0xFF7F52C7).withOpacity(0.35),
     ),
   );
 }
