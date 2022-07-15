@@ -16,8 +16,7 @@ class _EditarReceitasState extends State<EditarReceitas> {
   TextEditingController nomeReceita = TextEditingController();
   TextEditingController ingredientes = TextEditingController();
   TextEditingController modoPreparo = TextEditingController();
-  TextEditingController tipoReceita = TextEditingController();
-
+  
   @override
   Widget build(BuildContext context) {
     ReceitasModel argsIDFromHomePage =
@@ -31,7 +30,7 @@ class _EditarReceitasState extends State<EditarReceitas> {
               Navigator.of(context)
                   .pushReplacement(MaterialPageRoute(builder: (context) {
                 return ListaReceitas(
-                  tipoReceita: tipoReceita.text,
+                  tipoReceita: argsIDFromHomePage.tipoReceita,
                 );
               }));
             },
@@ -44,10 +43,10 @@ class _EditarReceitasState extends State<EditarReceitas> {
                       RecipeDatabase.instance.update(
                         ReceitasModel(
                           id: argsIDFromHomePage.id,
-                          nomeReceita: nomeReceita.text,
-                          ingredientes: ingredientes.text,
-                          modoPreparo: modoPreparo.text,
-                          tipoReceita: tipoReceita.text,
+                          nomeReceita: argsIDFromHomePage.nomeReceita,
+                          ingredientes: argsIDFromHomePage.ingredientes,
+                          modoPreparo: argsIDFromHomePage.modoPreparo,
+                          tipoReceita: argsIDFromHomePage.tipoReceita,
                         ),
                       );
                     },
@@ -61,7 +60,7 @@ class _EditarReceitasState extends State<EditarReceitas> {
         argsIDFromHomePage: argsIDFromHomePage,
         ingredientes: ingredientes,
         modoPreparo: modoPreparo,
-        tipoReceita: tipoReceita,
+        tipoReceita: argsIDFromHomePage.tipoReceita,
       ),
     );
   }

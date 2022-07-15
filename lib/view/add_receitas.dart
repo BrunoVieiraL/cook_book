@@ -1,8 +1,9 @@
-import 'package:cooking_agenda/components/add_receitas_colunm_component.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cooking_agenda/database/receitas_database.dart';
 import 'package:cooking_agenda/models/receitas_model.dart';
+
+import '../widgets/textfield_widget.dart';
 
 class AddReceitaPage extends StatefulWidget {
   const AddReceitaPage({
@@ -17,7 +18,8 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
   TextEditingController nomeReceita = TextEditingController();
   TextEditingController ingredientes = TextEditingController();
   TextEditingController modoPreparo = TextEditingController();
-  TextEditingController tipoReceita = TextEditingController();
+  List<String> listTipoReceita = ['Entrada', 'Prato Principal', 'Sobremesa'];
+  String tipoReceita = '';
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +55,9 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
                           nomeReceita: nomeReceita.text,
                           ingredientes: ingredientes.text,
                           modoPreparo: modoPreparo.text,
-                          tipoReceita: tipoReceita.text),
+                          tipoReceita: tipoReceita),
                     );
-                    Navigator.of(context).pop(
-                     );
+                    Navigator.of(context).pop();
                   },
                 );
               }
@@ -65,11 +66,46 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
           ),
         ],
       ),
-      body: AddReceitasColunmComponent(
-        nomeReceita: nomeReceita,
-        ingredientes: ingredientes,
-        modoPreparo: modoPreparo,
-        tipoReceita: tipoReceita,
+      body: Column(
+        children: [
+          TextFieldCustomWidget(
+            controller: nomeReceita,
+            textInputAction: TextInputAction.next,
+            hintText: 'Nome da Receita',
+          ),
+          TextFieldCustomWidget(
+            controller: ingredientes,
+            textInputAction: TextInputAction.next,
+            hintText: 'Ingredientes',
+          ),
+          TextFieldCustomWidget(
+            controller: modoPreparo,
+            textInputAction: TextInputAction.done,
+            hintText: 'Modo de Preparo',
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Text('Tipo da Receita'),
+              DropdownButton<String>(
+                hint: const Text('Tipo da Receita'),
+                items: listTipoReceita
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    tipoReceita = newValue!;
+                  });
+                },
+                value: tipoReceita.isEmpty ? 'Prato Principal' : tipoReceita,
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

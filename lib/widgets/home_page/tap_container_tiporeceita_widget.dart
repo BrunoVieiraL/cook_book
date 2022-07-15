@@ -20,10 +20,14 @@ class TapContainerTipoReceitaWidget extends StatelessWidget {
       child: Container(
         height: 47,
         width: 380,
-        child:  Text(
-          ' $tipoReceita',
-          textAlign: TextAlign.left,
-          style: const TextStyle(fontSize: 32),
+        child: Baseline(
+          baseline: 36,
+          baselineType: TextBaseline.alphabetic,
+          child: Text(
+            ' $tipoReceita',
+            textAlign: TextAlign.left,
+            style: const TextStyle(fontSize: 28, color: Colors.black),
+          ),
         ),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(8)),

@@ -18,85 +18,114 @@ class _ListaReceitasState extends State<ListaReceitas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Receitas'),
-      ),
-      body: FutureBuilder<List<ReceitasModel>>(
-        future: RecipeDatabase.instance.getReceitas(widget.tipoReceita),
-        builder: (BuildContext context,
-            AsyncSnapshot<List<ReceitasModel>> snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: Column(
-                children: const [
-                  CircularProgressIndicator(),
-                  Text('Carregando receitas'),
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 100,
+          ),
+          Text(
+            widget.tipoReceita,
+            style: const TextStyle(
+                fontSize: 50,
+                shadows: [
+                  Shadow(
+                      color: Colors.white, offset: Offset(1, 5), blurRadius: 8),
                 ],
-              ),
-            );
-          }
-          return snapshot.data!.isEmpty
-              ? const Center(
-                  child: Text(
-                    'Nenhuma Receita Adicionada',
-                    style: TextStyle(fontSize: 20),
+                color: Colors.black),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          FutureBuilder<List<ReceitasModel>>(
+            future: RecipeDatabase.instance.getReceitas(widget.tipoReceita),
+            builder: (BuildContext context,
+                AsyncSnapshot<List<ReceitasModel>> snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: Column(
+                    children: const [
+                      CircularProgressIndicator(),
+                      Text('Carregando receitas'),
+                    ],
                   ),
-                )
-              : ListView(
-                  shrinkWrap: false,
-                  children: snapshot.data!.map((recipes) {
-                    return Slidable(
-                      key: ValueKey<int>(recipes.id!),
-                      endActionPane: ActionPane(
-                        dragDismissible: false,
-                        children: [
-                          SlidableAction(
-                              padding: const EdgeInsets.only(right: 5),
-                              backgroundColor: Colors.green,
-                              icon: Icons.edit,
-                              onPressed: (BuildContext context) {
-                                setState(() {
-                                  Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                                          settings:
-                                              RouteSettings(arguments: recipes),
-                                          builder: (context) {
-                                            return const EditarReceitas();
-                                          }));
-                                });
-                              }),
-                          SlidableAction(
-                            backgroundColor: Colors.redAccent.shade400,
-                            icon: Icons.delete,
-                            onPressed: ((BuildContext context) {
-                              setState(() {
-                                RecipeDatabase.instance.remove(recipes.id!);
-                              });
-                            }),
+                );
+              }
+              return snapshot.data!.isEmpty
+                  ? const Center(
+                      heightFactor: 25,
+                      child: Text(
+                        'Nenhuma Receita Adicionada',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    )
+                  : ListView(
+                      padding: const EdgeInsets.all(5),
+                      shrinkWrap: true,
+                      children: snapshot.data!.map((recipes) {
+                        return Slidable(
+                          key: ValueKey<int>(recipes.id!),
+                          endActionPane: ActionPane(
+                            dragDismissible: false,
+                            children: [
+                              SlidableAction(
+                                  padding: const EdgeInsets.only(right: 5),
+                                  backgroundColor: Colors.green,
+                                  icon: Icons.edit,
+                                  onPressed: (BuildContext context) {
+                                    setState(() {
+                                      Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(
+                                              settings: RouteSettings(
+                                                  arguments: recipes),
+                                              builder: (context) {
+                                                return const EditarReceitas();
+                                              }));
+                                    });
+                                  }),
+                              SlidableAction(
+                                backgroundColor: Colors.redAccent.shade400,
+                                icon: Icons.delete,
+                                onPressed: ((BuildContext context) {
+                                  setState(() {
+                                    RecipeDatabase.instance.remove(recipes.id!);
+                                  });
+                                }),
+                              ),
+                            ],
+                            motion: const DrawerMotion(),
+                            dismissible: DismissiblePane(
+                              onDismissed: () {},
+                            ),
                           ),
-                        ],
-                        motion: const DrawerMotion(),
-                        dismissible: DismissiblePane(
-                          onDismissed: () {},
-                        ),
-                      ),
-                      child: ListTile(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) {
-                                  return const DetalhesReceitas();
+                          child: Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: Container(
+                              color: const Color(0xFFD1C3DC),
+                              child: ListTile(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return const DetalhesReceitas();
+                                      },
+                                      settings:
+                                          RouteSettings(arguments: recipes),
+                                    ),
+                                  );
                                 },
-                                settings: RouteSettings(arguments: recipes)),
-                          );
-                        },
-                        title: Text(
-                          recipes.nomeReceita,
-                        ),
-                      ),
+                                title: Text(
+                                  recipes.nomeReceita,
+                                  style: const TextStyle(color: Colors.black),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
                     );
-                  }).toList());
-        },
+            },
+          ),
+        ],
       ),
     );
   }

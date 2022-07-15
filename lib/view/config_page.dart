@@ -23,9 +23,15 @@ class _ConfigPageState extends State<ConfigPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Importar'),
+              const Text(
+                'Importar',
+                style: TextStyle(fontSize: 25),
+              ),
               GestureDetector(
-                child: const Icon(Icons.arrow_downward),
+                child: const Icon(
+                  Icons.arrow_downward,
+                  size: 28,
+                ),
                 onTap: () {
                   showDialog(
                     barrierDismissible: true,
@@ -57,8 +63,12 @@ class _ConfigPageState extends State<ConfigPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Alterar Tema'),
-              Switch.adaptive(
+              const Text(
+                'Alterar Tema',
+                style: TextStyle(fontSize: 25),
+              ),
+              Switch(
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   activeColor: Colors.black,
                   activeTrackColor: Colors.white,
                   inactiveThumbColor: Colors.white,
@@ -78,9 +88,15 @@ class _ConfigPageState extends State<ConfigPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Informações'),
+              const Text(
+                'Informações',
+                style: TextStyle(fontSize: 25),
+              ),
               GestureDetector(
-                child: const Icon(Icons.info),
+                child: const Icon(
+                  Icons.info,
+                  size: 28,
+                ),
                 onTap: () {
                   Navigator.of(context).pushNamed('/infoPage');
                 },
@@ -94,9 +110,15 @@ class _ConfigPageState extends State<ConfigPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Compartilhar app'),
+              const Text(
+                'Compartilhar app',
+                style: TextStyle(fontSize: 25),
+              ),
               GestureDetector(
-                child: const Icon(Icons.share),
+                child: const Icon(
+                  Icons.share,
+                  size: 28,
+                ),
                 onTap: () {},
               ),
             ],

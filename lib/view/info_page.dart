@@ -11,28 +11,24 @@ class InfoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Informações'),
-        backgroundColor: const Color(0xFF935EB0),
       ),
-      body: Container(
-        color: Colors.grey,
-        child: Column(
-          children: const [
-            SizedBox(
-              height: 25,
-            ),
-            CardDeveloperRoleComponent(
-              role: 'Developer',
-              fullName: 'Bruno Vieira',
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            CardDeseignerRoleComponent(
-              role: 'Designer UI/UX',
-              fullName: 'Thays Lobato',
-            ),
-          ],
-        ),
+      body: Column(
+        children: const [
+          SizedBox(
+            height: 25,
+          ),
+          CardDeveloperComponent(
+            role: 'Developer',
+            fullName: 'Bruno Vieira',
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          CardDeseignerComponent(
+            role: 'Designer UI/UX',
+            fullName: 'Thays Lobato',
+          ),
+        ],
       ),
     );
   }

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../widgets/card_social_widget.dart';
 
-class CardDeseignerRoleComponent extends StatelessWidget {
+class CardDeseignerComponent extends StatelessWidget {
   final String role;
   final String fullName;
 
-  const CardDeseignerRoleComponent({
+  const CardDeseignerComponent({
     Key? key,
     required this.role,
     required this.fullName,
@@ -21,13 +22,11 @@ class CardDeseignerRoleComponent extends StatelessWidget {
           children: [
             Text(
               role + ': ',
-              style: const TextStyle(
-                  fontSize: 16, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
             ),
             Text(
               fullName,
-              style: const TextStyle(
-                  fontSize: 15, fontWeight: FontWeight.w400),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
             ),
             const SizedBox(
               width: 15,
@@ -41,21 +40,57 @@ class CardDeseignerRoleComponent extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        const CardSocialWidget(
-          text: 'githublink',
+        CardSocialWidget(
+          text: 'Thays Lobato',
           iconPath: 'assets/behance.png',
+          urlPath: () async {
+            String urlBehance = 'https://www.behance.net/thayslobato';
+            await launchUrlString(urlBehance);
+          },
         ),
-        const CardSocialWidget(
-          text: 'text',
+        CardSocialWidget(
+          text: 'Thays Lobato',
           iconPath: 'assets/linkedin.png',
+          urlPath: () async {
+            String urlLinkedin =
+                'https://www.linkedin.com/in/thays-lobato-35b9161b0/';
+            await launchUrlString(urlLinkedin);
+          },
         ),
-        const CardSocialWidget(
-          text: 'text',
+        CardSocialWidget(
+          text: 'thayslobato2@gmail.com',
           iconPath: 'assets/gmail.png',
+          urlPath: () async {
+            String email = 'thayslobato2@gmail.com';
+            String assunto = '';
+            String body = '';
+
+            String? encodeQueryParameters(Map<String, String> params) {
+              return params.entries
+                  .map((MapEntry<String, String> element) =>
+                      '${Uri.encodeComponent(element.key)}=${Uri.encodeComponent(element.value)}')
+                  .join('&');
+            }
+
+            final Uri emailUri = Uri(
+              scheme: 'mailto',
+              path: email,
+              query: encodeQueryParameters(<String, String>{
+                'assunto': assunto,
+                'body': body,
+              }),
+            );
+            await launchUrlString(emailUri.toString());
+          },
         ),
-        const CardSocialWidget(
-          text: 'text',
+        CardSocialWidget(
+          text: 'TL Designer Gráfico',
           iconPath: 'assets/instagram.png',
+          urlPath: () async {
+            String urlInstagram =
+                'https://www.instagram.com/tldesigner.grafico/';
+            await launchUrlString(urlInstagram);
+          },
         )
       ],
     );
