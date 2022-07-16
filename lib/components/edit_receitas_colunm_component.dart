@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../database/receitas_database.dart';
 import '../models/receitas_model.dart';
+import '../view/lista_receitas_page.dart';
 import '../widgets/textfield_widget.dart';
 
 class EditReceitasColunmComponent extends StatefulWidget {
@@ -20,11 +22,13 @@ class EditReceitasColunmComponent extends StatefulWidget {
   final String tipoReceita;
 
   @override
-  State<EditReceitasColunmComponent> createState() => _EditReceitasColunmComponentState();
+  State<EditReceitasColunmComponent> createState() =>
+      _EditReceitasColunmComponentState();
 }
 
-class _EditReceitasColunmComponentState extends State<EditReceitasColunmComponent> {
-  List<String> listTipoReceita = ['Entrada','Prato Principal','Sobremesa'];
+class _EditReceitasColunmComponentState
+    extends State<EditReceitasColunmComponent> {
+  List<String> listTipoReceita = ['Entrada', 'Prato Principal', 'Sobremesa'];
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +70,52 @@ class _EditReceitasColunmComponentState extends State<EditReceitasColunmComponen
               value: widget.argsIDFromHomePage!.tipoReceita,
             ),
           ],
-        )
+        ),
+        const SizedBox(
+          height: 300,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton(
+              onPressed: () async {
+                setState(
+                  () {
+                    RecipeDatabase.instance.update(
+                      ReceitasModel(
+                        id: widget.argsIDFromHomePage!.id,
+                        nomeReceita: widget.argsIDFromHomePage!.nomeReceita,
+                        ingredientes: widget.argsIDFromHomePage!.ingredientes,
+                        modoPreparo: widget.argsIDFromHomePage!.modoPreparo,
+                        tipoReceita: widget.argsIDFromHomePage!.tipoReceita,
+                      ),
+                    );
+                  },
+                );
+                Navigator.of(context).pop();
+              },
+              child: const Text('Salvar alteração'),
+            ),
+            const Icon(Icons.check),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context)
+                .pushReplacement(MaterialPageRoute(builder: (context) {
+              return ListaReceitas(
+                tipoReceita: widget.argsIDFromHomePage!.tipoReceita,
+              );
+            }));
+              },
+              child: const Text('Cancelar'),
+            ),
+            const Icon(Icons.close),
+          ],
+        ),
       ],
     );
   }

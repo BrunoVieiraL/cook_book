@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:cooking_agenda/database/receitas_database.dart';
-import 'package:cooking_agenda/models/receitas_model.dart';
-
+import '../database/receitas_database.dart';
+import '../models/receitas_model.dart';
 import '../widgets/textfield_widget.dart';
 
 class AddReceitaPage extends StatefulWidget {
@@ -25,46 +24,19 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Adicionar Receita'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+        toolbarHeight: 100,
+        title: const Text(
+          'Adicionar Receita',
+          style: TextStyle(
+              color: Colors.black,
+              shadows: [
+                Shadow(
+                  color: Colors.white,
+                  offset: Offset(0, 3),
+                ),
+              ],
+              fontSize: 30),
         ),
-        actions: [
-          ElevatedButton(
-            onPressed: () async {
-              if (nomeReceita.text.isEmpty &&
-                  ingredientes.text.isEmpty &&
-                  modoPreparo.text.isEmpty) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                      'Preencha os Campos',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    duration: Duration(seconds: 3),
-                  ),
-                );
-              } else {
-                setState(
-                  () {
-                    RecipeDatabase.instance.add(
-                      ReceitasModel(
-                          nomeReceita: nomeReceita.text,
-                          ingredientes: ingredientes.text,
-                          modoPreparo: modoPreparo.text,
-                          tipoReceita: tipoReceita),
-                    );
-                    Navigator.of(context).pop();
-                  },
-                );
-              }
-            },
-            child: const Text('Salvar'),
-          ),
-        ],
       ),
       body: Column(
         children: [
@@ -105,6 +77,58 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
               ),
             ],
           ),
+          const SizedBox(
+            height: 300,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () async {
+                  if (nomeReceita.text.isEmpty &&
+                      ingredientes.text.isEmpty &&
+                      modoPreparo.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'Preencha os Campos',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        duration: Duration(seconds: 3),
+                      ),
+                    );
+                  } else {
+                    setState(
+                      () {
+                        RecipeDatabase.instance.add(
+                          ReceitasModel(
+                              nomeReceita: nomeReceita.text,
+                              ingredientes: ingredientes.text,
+                              modoPreparo: modoPreparo.text,
+                              tipoReceita: tipoReceita),
+                        );
+                        Navigator.of(context).pop();
+                      },
+                    );
+                  }
+                },
+                child: const Text('Salvar'),
+              ),
+              const Icon(Icons.check),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancelar'),
+              ),
+              const Icon(Icons.close),
+            ],
+          )
         ],
       ),
     );
