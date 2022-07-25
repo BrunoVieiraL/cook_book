@@ -23,6 +23,7 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         toolbarHeight: 100,
         title: const Text(
@@ -44,16 +45,19 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
             controller: nomeReceita,
             textInputAction: TextInputAction.next,
             hintText: 'Nome da Receita',
+            maxLines: 1,
           ),
           TextFieldCustomWidget(
             controller: ingredientes,
             textInputAction: TextInputAction.next,
             hintText: 'Ingredientes',
+            maxLines: 5,
           ),
           TextFieldCustomWidget(
             controller: modoPreparo,
             textInputAction: TextInputAction.done,
             hintText: 'Modo de Preparo',
+            maxLines: 5,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -78,7 +82,7 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
             ],
           ),
           const SizedBox(
-            height: 300,
+            height: 200,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,

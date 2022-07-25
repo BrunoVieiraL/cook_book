@@ -32,91 +32,102 @@ class _EditReceitasColunmComponentState
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextFieldCustomWidget(
-          controller: widget.nomeReceita,
-          textInputAction: TextInputAction.next,
-          hintText: widget.argsIDFromHomePage!.nomeReceita,
-        ),
-        TextFieldCustomWidget(
-          controller: widget.ingredientes,
-          textInputAction: TextInputAction.next,
-          hintText: widget.argsIDFromHomePage!.ingredientes,
-        ),
-        TextFieldCustomWidget(
-          controller: widget.modoPreparo,
-          textInputAction: TextInputAction.next,
-          hintText: widget.argsIDFromHomePage!.modoPreparo,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const Text('Tipo da Receita'),
-            DropdownButton<String>(
-              hint: const Text('Tipo da Receita'),
-              items:
-                  listTipoReceita.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  widget.argsIDFromHomePage!.tipoReceita = newValue!;
-                });
-              },
-              value: widget.argsIDFromHomePage!.tipoReceita,
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 300,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            TextButton(
-              onPressed: () async {
-                setState(
-                  () {
-                    RecipeDatabase.instance.update(
-                      ReceitasModel(
-                        id: widget.argsIDFromHomePage!.id,
-                        nomeReceita: widget.argsIDFromHomePage!.nomeReceita,
-                        ingredientes: widget.argsIDFromHomePage!.ingredientes,
-                        modoPreparo: widget.argsIDFromHomePage!.modoPreparo,
-                        tipoReceita: widget.argsIDFromHomePage!.tipoReceita,
-                      ),
-                    );
-                  },
-                );
-                Navigator.of(context).pop();
-              },
-              child: const Text('Salvar alteração'),
-            ),
-            const Icon(Icons.check),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context)
-                .pushReplacement(MaterialPageRoute(builder: (context) {
-              return ListaReceitas(
-                tipoReceita: widget.argsIDFromHomePage!.tipoReceita,
-              );
-            }));
-              },
-              child: const Text('Cancelar'),
-            ),
-            const Icon(Icons.close),
-          ],
-        ),
-      ],
+    widget.nomeReceita.text = widget.argsIDFromHomePage!.nomeReceita;
+    widget.ingredientes.text = widget.argsIDFromHomePage!.ingredientes;
+    widget.modoPreparo.text = widget.argsIDFromHomePage!.modoPreparo;
+
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Column(
+        children: [
+          TextFieldCustomWidget(
+            controller: widget.nomeReceita,
+            textInputAction: TextInputAction.next,
+            maxLines: 1,
+            hintText: 'Nome da Receita',
+          ),
+          TextFieldCustomWidget(
+            controller: widget.ingredientes,
+            textInputAction: TextInputAction.next,
+            maxLines: 5,
+            hintText: 'Ingredientes',
+          ),
+          TextFieldCustomWidget(
+            controller: widget.modoPreparo,
+            textInputAction: TextInputAction.next,
+            maxLines: 5,
+            hintText: 'Modo de Preparo',
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Text('Tipo da Receita'),
+              DropdownButton<String>(
+                hint: const Text('Tipo da Receita'),
+                items: listTipoReceita
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    widget.argsIDFromHomePage!.tipoReceita = newValue!;
+                  });
+                },
+                value: widget.argsIDFromHomePage!.tipoReceita,
+              ),
+            ],
+          ),
+          const SizedBox(height: 170),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () async {
+                  setState(
+                    () {
+                      RecipeDatabase.instance.update(
+                        ReceitasModel(
+                            id: widget.argsIDFromHomePage!.id,
+                            nomeReceita: widget.nomeReceita.text,
+                            ingredientes: widget.ingredientes.text,
+                            modoPreparo: widget.modoPreparo.text,
+                            tipoReceita:
+                                widget.argsIDFromHomePage!.tipoReceita),
+                      );
+                    },
+                  );
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Salvar alteração'),
+              ),
+              const Icon(Icons.check),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ListaReceitas(
+                            tipoReceita:
+                                widget.argsIDFromHomePage!.tipoReceita);
+                      },
+                    ),
+                  );
+                },
+                child: const Text('Cancelar'),
+              ),
+              const Icon(Icons.close),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

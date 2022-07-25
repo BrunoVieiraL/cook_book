@@ -21,16 +21,29 @@ class _DetalhesReceitasState extends State<DetalhesReceitas> {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text(
-            argsFromListaReceitas.ingredientes,
+          Expanded(
+            child: Container(
+              color: Colors.amber,
+              child: Text(
+                argsFromListaReceitas.ingredientes
+                    .replaceAll(',', '\n')
+                    .trimLeft(),
+              ),
+            ),
           ),
-          Text(
-            argsFromListaReceitas.modoPreparo,
+          Expanded(
+            child: Container(
+              color: Colors.blue,
+              child: Text(
+                argsFromListaReceitas.modoPreparo,
+              ),
+            ),
           ),
         ],
       ),
-      
     );
   }
 }

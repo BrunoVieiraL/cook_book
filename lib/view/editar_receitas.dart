@@ -20,6 +20,7 @@ class _EditarReceitasState extends State<EditarReceitas> {
     ReceitasModel argsIDFromHomePage =
         ModalRoute.of(context)!.settings.arguments as ReceitasModel;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         toolbarHeight: 100,
         title: const Text(
