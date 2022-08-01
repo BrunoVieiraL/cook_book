@@ -25,20 +25,18 @@ class _DetalhesReceitasState extends State<DetalhesReceitas> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Expanded(
-            child: Container(
-              color: Colors.amber,
+            child: SingleChildScrollView(
               child: Text(
-                argsFromListaReceitas.ingredientes
-                    .replaceAll(',', '\n')
-                    .trimLeft(),
+                argsFromListaReceitas.ingredientes.replaceAll(', ', '\n'),
+                style: const TextStyle(fontSize: 28),
               ),
             ),
           ),
           Expanded(
-            child: Container(
-              color: Colors.blue,
+            child: SingleChildScrollView(
               child: Text(
                 argsFromListaReceitas.modoPreparo,
+                style: const TextStyle(fontSize: 25),
               ),
             ),
           ),

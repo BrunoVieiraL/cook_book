@@ -82,7 +82,7 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
             ],
           ),
           const SizedBox(
-            height: 200,
+            height: 150,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
