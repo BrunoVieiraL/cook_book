@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../database/receitas_database.dart';
 import '../../models/receitas_model.dart';
-import '../../view/lista_receitas_page.dart';
+import '../../views/lista_receitas_page.dart';
 import '../../widgets/textfield_widget.dart';
 
 class EditReceitasColunmComponent extends StatefulWidget {

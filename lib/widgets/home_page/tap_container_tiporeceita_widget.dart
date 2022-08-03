@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../view/lista_receitas_page.dart';
+import '../../views/lista_receitas_page.dart';
 
 class TapContainerTipoReceitaWidget extends StatelessWidget {
   const TapContainerTipoReceitaWidget({

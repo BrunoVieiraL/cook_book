@@ -1,13 +1,13 @@
 import 'package:cooking_agenda/provider/themes_provider.dart';
-import 'package:cooking_agenda/view/add_receitas.dart';
-import 'package:cooking_agenda/view/config_page.dart';
-import 'package:cooking_agenda/view/home_page.dart';
-import 'package:cooking_agenda/view/lista_receitas_page.dart';
+import 'package:cooking_agenda/views/add_receitas.dart';
+import 'package:cooking_agenda/views/config_page.dart';
+import 'package:cooking_agenda/views/home_page.dart';
+import 'package:cooking_agenda/views/lista_receitas_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'view/info_page.dart';
-import 'view/splash_page.dart';
+import 'views/info_page.dart';
+import 'views/splash_page.dart';
 
 void main() async {
   runApp(const MyApp());
