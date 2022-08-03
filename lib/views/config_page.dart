@@ -33,25 +33,8 @@ class _ConfigPageState extends State<ConfigPage> {
                   size: 28,
                 ),
                 onTap: () {
-                  showDialog(
-                    barrierDismissible: true,
-                    context: context,
-                    builder: (_) => AlertDialog(
-                      title: const Text('Deseja Salvar a Receita?'),
-                      actions: [
-                        OutlinedButton(
-                          onPressed: () {},
-                          child: const Text('Sim'),
-                        ),
-                        OutlinedButton(
-                          onPressed: () {},
-                          child: const Text('Não'),
-                        ),
-                      ],
-                      elevation: 24,
-                      backgroundColor: const Color(0xFFD1C3DC),
-                    ),
-                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Em construção')));
                 },
               ),
             ],
