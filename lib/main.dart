@@ -1,8 +1,8 @@
-import 'package:cooking_agenda/provider/themes_provider.dart';
-import 'package:cooking_agenda/views/add_receitas.dart';
-import 'package:cooking_agenda/views/config_page.dart';
-import 'package:cooking_agenda/views/home_page.dart';
-import 'package:cooking_agenda/views/lista_receitas_page.dart';
+import 'package:cook_book/provider/themes_provider.dart';
+import 'package:cook_book/views/add_receitas.dart';
+import 'package:cook_book/views/config_page.dart';
+import 'package:cook_book/views/home_page.dart';
+import 'package:cook_book/views/lista_receitas_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

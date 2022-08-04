@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:cooking_agenda/models/receitas_model.dart';
+import 'package:cook_book/models/receitas_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';

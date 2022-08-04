@@ -1,4 +1,4 @@
-import 'package:cooking_agenda/provider/themes_provider.dart';
+import 'package:cook_book/provider/themes_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

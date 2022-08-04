@@ -1,4 +1,4 @@
-import 'package:cooking_agenda/models/receitas_model.dart';
+import 'package:cook_book/models/receitas_model.dart';
 
 import 'package:flutter/material.dart';
 

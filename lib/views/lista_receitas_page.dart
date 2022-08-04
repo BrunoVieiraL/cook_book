@@ -1,6 +1,6 @@
-import 'package:cooking_agenda/database/receitas_database.dart';
-import 'package:cooking_agenda/models/receitas_model.dart';
-import 'package:cooking_agenda/views/detalhes_receitas.dart';
+import 'package:cook_book/database/receitas_database.dart';
+import 'package:cook_book/models/receitas_model.dart';
+import 'package:cook_book/views/detalhes_receitas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
