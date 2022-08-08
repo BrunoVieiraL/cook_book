@@ -1,4 +1,5 @@
 import 'package:cook_book/provider/themes_provider.dart';
+import 'package:cook_book/services/prefs_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -58,9 +59,13 @@ class _ConfigPageState extends State<ConfigPage> {
                   inactiveTrackColor: Colors.black,
                   value: themeProvider.isDarkMode,
                   onChanged: (value) {
-                    final provider =
-                        Provider.of<ThemeProvider>(context, listen: false);
-                    provider.toggleTheme(value);
+                    setState(() {
+                      final provider =
+                          Provider.of<ThemeProvider>(context, listen: false);
+                      provider.toggleTheme(value);
+                      PrefsService instance = PrefsService();
+                      instance.save(value);
+                    });
                   }),
             ],
           ),
