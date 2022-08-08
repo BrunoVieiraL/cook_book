@@ -24,7 +24,7 @@ class CardSocialWidget extends StatelessWidget {
           Image.asset(
             iconPath,
             scale: 13,
-            color: provider.isDarkMode == false ? Colors.black : Colors.white,
+            color: provider.isDark == false ? Colors.black : Colors.white,
           ),
           const SizedBox(
             width: 12,
@@ -51,7 +51,7 @@ class CardSocialWidget extends StatelessWidget {
                     text: TextSpan(
                         text: text,
                         style: TextStyle(
-                          color: provider.isDarkMode == true
+                          color: provider.isDark == true
                               ? Colors.black
                               : Colors.white,
                         )),

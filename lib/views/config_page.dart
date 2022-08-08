@@ -1,5 +1,4 @@
 import 'package:cook_book/provider/themes_provider.dart';
-import 'package:cook_book/services/prefs_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,22 +50,18 @@ class _ConfigPageState extends State<ConfigPage> {
                 'Alterar Tema',
                 style: TextStyle(fontSize: 25),
               ),
-              Switch(
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  activeColor: Colors.black,
-                  activeTrackColor: Colors.white,
-                  inactiveThumbColor: Colors.white,
-                  inactiveTrackColor: Colors.black,
-                  value: themeProvider.isDarkMode,
-                  onChanged: (value) {
-                    setState(() {
-                      final provider =
-                          Provider.of<ThemeProvider>(context, listen: false);
-                      provider.toggleTheme(value);
-                      PrefsService instance = PrefsService();
-                      instance.save(value);
-                    });
-                  }),
+              Consumer<ThemeProvider>(
+                builder: (context, provider, child) => Switch(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    activeColor: Colors.black,
+                    activeTrackColor: Colors.white,
+                    inactiveThumbColor: Colors.white,
+                    inactiveTrackColor: Colors.black,
+                    value: themeProvider.isDark,
+                    onChanged: (value) {
+                      provider.toggleTheme();
+                    }),
+              ),
             ],
           ),
           const Divider(
