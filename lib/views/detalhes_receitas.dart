@@ -28,7 +28,7 @@ class _DetalhesReceitasState extends State<DetalhesReceitas> {
             child: SingleChildScrollView(
               child: Text(
                 argsFromListaReceitas.ingredientes.replaceAll(', ', '\n'),
-                style: const TextStyle(fontSize: 28),
+                style: const TextStyle(fontSize: 20),
               ),
             ),
           ),
@@ -36,7 +36,7 @@ class _DetalhesReceitasState extends State<DetalhesReceitas> {
             child: SingleChildScrollView(
               child: Text(
                 argsFromListaReceitas.modoPreparo,
-                style: const TextStyle(fontSize: 25),
+                style: const TextStyle(fontSize: 20),
               ),
             ),
           ),
