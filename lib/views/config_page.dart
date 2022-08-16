@@ -33,8 +33,7 @@ class _ConfigPageState extends State<ConfigPage> {
                   size: 28,
                 ),
                 onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Em construção')));
+                  emConstrucao();
                 },
               ),
             ],
@@ -102,7 +101,9 @@ class _ConfigPageState extends State<ConfigPage> {
                   Icons.share,
                   size: 28,
                 ),
-                onTap: () {},
+                onTap: () {
+                  emConstrucao();
+                },
               ),
             ],
           ),
@@ -113,5 +114,10 @@ class _ConfigPageState extends State<ConfigPage> {
         ],
       ),
     );
+  }
+
+  emConstrucao() {
+    return ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Em construção')));
   }
 }
