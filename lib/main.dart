@@ -30,9 +30,8 @@ class MyApp extends StatelessWidget {
           theme: Themes.lightTheme,
           darkTheme: Themes.darkTheme,
           debugShowCheckedModeBanner: false,
-          initialRoute: '/',
+          initialRoute: '/homepage',
           routes: {
-            '/': (_) => const SplashPage(),
             '/homePage': (_) => const HomePage(),
             '/listaReceitas': (_) => const ListaReceitas(
                   tipoReceita: '',

@@ -8,12 +8,12 @@ void main() {
       modoPreparo: 'modoPreparo',
       tipoReceita: 'tipoReceita');
 
-  test('nomeReceita Deve vir uma string', () {
-    expect(model.nomeReceita, "nomeReceita");
-    expect(model.nomeReceita, isA<String>());
-  });
-  test('ID pode ser nulo', () {
-    expect(model.id, isNull);
-    expect(model.id, isA<int?>());
+  group('Testando o model', () {
+    test('nomeReceita Deve vir uma string', () {
+      expect(model.nomeReceita, isA<String>());
+    });
+    test('ID pode ser nulo', () {
+      expect(model.id, isA<int?>());
+    });
   });
 }
