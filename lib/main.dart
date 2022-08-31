@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'themes/custom_themes.dart';
 import 'views/info_page.dart';
-import 'views/splash_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
