@@ -16,7 +16,7 @@ class Themes {
     iconTheme: const IconThemeData(color: Colors.white),
     primaryIconTheme: const IconThemeData(color: Colors.white),
     textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(primary: Colors.white),
+      style: TextButton.styleFrom(foregroundColor: Colors.white),
     ),
   );
 
@@ -35,7 +35,7 @@ class Themes {
     iconTheme: const IconThemeData(color: Colors.black),
     primaryIconTheme: const IconThemeData(color: Colors.black),
     textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(primary: Colors.black),
+      style: TextButton.styleFrom(foregroundColor: Colors.black),
     ),
   );
 }
