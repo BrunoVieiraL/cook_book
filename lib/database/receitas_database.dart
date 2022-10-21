@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cook_book/models/receitas_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -13,8 +12,8 @@ class RecipeDatabase {
   Future<Database> get database async => _database ??= await _initDatabase();
 
   Future<Database> _initDatabase() async {
-    Directory documentsirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsirectory.path, 'recipes.db');
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    String path = join(documentsDirectory.path, 'recipes.db');
     return await openDatabase(path, version: 1, onCreate: _onCreate);
   }
 

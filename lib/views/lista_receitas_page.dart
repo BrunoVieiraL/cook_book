@@ -63,7 +63,6 @@ class _ListaReceitasState extends State<ListaReceitas> {
                       shrinkWrap: true,
                       children: snapshot.data!.map((recipes) {
                         return Slidable(
-                          key: ValueKey<int>(recipes.id!),
                           endActionPane: ActionPane(
                             dragDismissible: false,
                             children: [

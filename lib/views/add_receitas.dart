@@ -77,20 +77,20 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
                     tipoReceita = newValue!;
                   });
                 },
-                value: tipoReceita.isEmpty ? 'Prato Principal' : tipoReceita,
+                value: tipoReceita.isEmpty ? listTipoReceita[1] : tipoReceita,
               ),
             ],
           ),
           const SizedBox(
-            height: 150,
+            height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton(
                 onPressed: () async {
-                  if (nomeReceita.text.isEmpty &&
-                      ingredientes.text.isEmpty &&
+                  if (nomeReceita.text.isEmpty ||
+                      ingredientes.text.isEmpty ||
                       modoPreparo.text.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(

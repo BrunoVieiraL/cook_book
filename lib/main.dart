@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           theme: Themes.lightTheme,
           darkTheme: Themes.darkTheme,
           debugShowCheckedModeBanner: false,
-          initialRoute: '/homepage',
+          initialRoute: '/homePage',
           routes: {
             '/homePage': (_) => const HomePage(),
             '/listaReceitas': (_) => const ListaReceitas(
