@@ -1,10 +1,8 @@
 import 'package:cook_book/database/receitas_database.dart';
 import 'package:cook_book/models/receitas_model.dart';
-import 'package:cook_book/views/detalhes_receitas.dart';
+import 'package:cook_book/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-
-import 'editar_receitas.dart';
 
 class ListaReceitas extends StatefulWidget {
   const ListaReceitas({required this.tipoReceita, Key? key}) : super(key: key);

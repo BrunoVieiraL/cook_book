@@ -1,12 +1,8 @@
 import 'package:cook_book/provider/themes_provider.dart';
-import 'package:cook_book/views/add_receitas.dart';
-import 'package:cook_book/views/config_page.dart';
-import 'package:cook_book/views/home_page.dart';
-import 'package:cook_book/views/lista_receitas_page.dart';
+import 'package:cook_book/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'themes/custom_themes.dart';
-import 'views/info_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

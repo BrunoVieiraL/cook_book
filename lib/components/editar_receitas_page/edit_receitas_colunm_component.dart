@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
 import '../../database/receitas_database.dart';
 import '../../models/receitas_model.dart';
-import '../../views/lista_receitas_page.dart';
-import '../../widgets/textfield_widget.dart';
+import '../../views/views.dart';
+import '../../widgets/widgets.dart';
+
 
 class EditReceitasColunmComponent extends StatefulWidget {
   const EditReceitasColunmComponent({

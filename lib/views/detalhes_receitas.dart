@@ -1,5 +1,4 @@
 import 'package:cook_book/models/receitas_model.dart';
-
 import 'package:flutter/material.dart';
 
 class DetalhesReceitas extends StatefulWidget {

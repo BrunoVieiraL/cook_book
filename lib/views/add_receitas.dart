@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../database/receitas_database.dart';
 import '../models/receitas_model.dart';
-import '../widgets/textfield_widget.dart';
+import '../widgets/widgets.dart';
 
 class AddReceitaPage extends StatefulWidget {
   const AddReceitaPage({

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../widgets/home_page/tap_container_tiporeceita_widget.dart';
+import '../widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

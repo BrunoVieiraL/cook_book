@@ -1,7 +1,6 @@
 import 'package:cook_book/models/receitas_model.dart';
 import 'package:flutter/material.dart';
-
-import '../components/editar_receitas_page/edit_receitas_colunm_component.dart';
+import '../components/components.dart';
 
 class EditarReceitas extends StatefulWidget {
   const EditarReceitas({Key? key}) : super(key: key);
