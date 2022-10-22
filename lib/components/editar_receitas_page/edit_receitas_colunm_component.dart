@@ -4,7 +4,6 @@ import '../../models/receitas_model.dart';
 import '../../views/views.dart';
 import '../../widgets/widgets.dart';
 
-
 class EditReceitasColunmComponent extends StatefulWidget {
   const EditReceitasColunmComponent({
     Key? key,
@@ -35,7 +34,7 @@ class _EditReceitasColunmComponentState
     widget.nomeReceita.text = widget.argsIDFromHomePage!.nomeReceita;
     widget.ingredientes.text = widget.argsIDFromHomePage!.ingredientes;
     widget.modoPreparo.text = widget.argsIDFromHomePage!.modoPreparo;
-
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -80,7 +79,7 @@ class _EditReceitasColunmComponentState
               ),
             ],
           ),
-          const SizedBox(height: 170),
+          SizedBox(height: height * 0.265),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

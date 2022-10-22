@@ -13,99 +13,105 @@ class _ConfigPageState extends State<ConfigPage> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(title: const Text('Configurações')),
       body: Column(
         children: [
-          const SizedBox(
-            height: 28,
+          SizedBox(
+            height: height * 0.043,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Importar',
-                style: TextStyle(fontSize: 25),
-              ),
-              GestureDetector(
-                child: const Icon(
+          GestureDetector(
+            onTap: () {
+              emConstrucao();
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Importar',
+                  style: TextStyle(fontSize: 25),
+                ),
+                Icon(
                   Icons.arrow_downward,
                   size: 28,
                 ),
-                onTap: () {
-                  emConstrucao();
-                },
-              ),
-            ],
+              ],
+            ),
           ),
           const Divider(
             thickness: 1,
             color: Colors.black,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Alterar Tema',
-                style: TextStyle(fontSize: 25),
+          Consumer<ThemeProvider>(
+            builder: (context, provider, child) => GestureDetector(
+              onTap: () {
+                provider.toggleTheme();
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Alterar Tema',
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  Switch(
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      activeColor: Colors.black,
+                      activeTrackColor: Colors.white,
+                      inactiveThumbColor: Colors.white,
+                      inactiveTrackColor: Colors.black,
+                      value: themeProvider.isDark,
+                      onChanged: (value) {
+                        provider.toggleTheme();
+                      }),
+                ],
               ),
-              Consumer<ThemeProvider>(
-                builder: (context, provider, child) => Switch(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    activeColor: Colors.black,
-                    activeTrackColor: Colors.white,
-                    inactiveThumbColor: Colors.white,
-                    inactiveTrackColor: Colors.black,
-                    value: themeProvider.isDark,
-                    onChanged: (value) {
-                      provider.toggleTheme();
-                    }),
-              ),
-            ],
+            ),
           ),
           const Divider(
             thickness: 1,
             color: Colors.black,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Informações',
-                style: TextStyle(fontSize: 25),
-              ),
-              GestureDetector(
-                child: const Icon(
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed('/infoPage');
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Informações',
+                  style: TextStyle(fontSize: 25),
+                ),
+                Icon(
                   Icons.info,
                   size: 28,
                 ),
-                onTap: () {
-                  Navigator.of(context).pushNamed('/infoPage');
-                },
-              ),
-            ],
+              ],
+            ),
           ),
           const Divider(
             thickness: 1,
             color: Colors.black,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Compartilhar app',
-                style: TextStyle(fontSize: 25),
-              ),
-              GestureDetector(
-                child: const Icon(
+          GestureDetector(
+            onTap: () {
+              emConstrucao();
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  'Compartilhar app',
+                  style: TextStyle(fontSize: 25),
+                ),
+                Icon(
                   Icons.share,
                   size: 28,
                 ),
-                onTap: () {
-                  emConstrucao();
-                },
-              ),
-            ],
+              ],
+            ),
           ),
           const Divider(
             thickness: 1,

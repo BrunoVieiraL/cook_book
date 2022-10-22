@@ -15,11 +15,12 @@ class ListaReceitas extends StatefulWidget {
 class _ListaReceitasState extends State<ListaReceitas> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(
-            height: 100,
+          SizedBox(
+            height: height * 0.078,
           ),
           Text(
             widget.tipoReceita,
@@ -31,8 +32,8 @@ class _ListaReceitasState extends State<ListaReceitas> {
                 ],
                 color: Colors.black),
           ),
-          const SizedBox(
-            height: 30,
+          SizedBox(
+            height: height * 0.078,
           ),
           FutureBuilder<List<ReceitasModel>>(
             future: RecipeDatabase.instance.getReceitas(widget.tipoReceita),
@@ -49,9 +50,9 @@ class _ListaReceitasState extends State<ListaReceitas> {
                 );
               }
               return snapshot.data!.isEmpty
-                  ? const Center(
-                      heightFactor: 25,
-                      child: Text(
+                  ? Center(
+                      heightFactor: height * 0.023,
+                      child: const Text(
                         'Nenhuma Receita Adicionada',
                         style: TextStyle(fontSize: 20),
                       ),

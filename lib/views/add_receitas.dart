@@ -21,10 +21,12 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final appBarSize = height * 0.13;    
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        toolbarHeight: 100,
+        toolbarHeight: appBarSize,
         title: const Text(
           'Adicionar Receita',
           style: TextStyle(
@@ -80,8 +82,8 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
+           SizedBox(
+            height: height * 0.015,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,

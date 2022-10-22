@@ -16,6 +16,8 @@ class CardSocialWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     final provider = Provider.of<ThemeProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -24,10 +26,12 @@ class CardSocialWidget extends StatelessWidget {
           Image.asset(
             iconPath,
             scale: 13,
-            color: provider.isDark == false ? Colors.black : Colors.white,
+            color: provider.isDark == false
+                ? Colors.black
+                : const Color(0xFF7F52C7),
           ),
-          const SizedBox(
-            width: 12,
+          SizedBox(
+            width: height * 0.03,
           ),
           GestureDetector(
             onTap: () {
@@ -40,8 +44,8 @@ class CardSocialWidget extends StatelessWidget {
                   Radius.circular(8),
                 ),
               ),
-              height: 32,
-              width: 300,
+              height: height * 0.05,
+              width: width * 0.80,
               child: Align(
                 alignment: Alignment.center,
                 child: Baseline(
@@ -49,17 +53,18 @@ class CardSocialWidget extends StatelessWidget {
                   baselineType: TextBaseline.alphabetic,
                   child: RichText(
                     text: TextSpan(
-                        text: text,
-                        style: TextStyle(
-                          color: provider.isDark == true
-                              ? Colors.black
-                              : Colors.white,
-                        )),
+                      text: text,
+                      style: TextStyle(
+                        color: provider.isDark == true
+                            ? Colors.black
+                            : const Color(0xFF7F52C7),
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

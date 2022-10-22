@@ -12,7 +12,6 @@ class _DetalhesReceitasState extends State<DetalhesReceitas> {
   Widget build(BuildContext context) {
     ReceitasModel argsFromListaReceitas =
         ModalRoute.of(context)!.settings.arguments as ReceitasModel;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(

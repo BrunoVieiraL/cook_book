@@ -11,6 +11,8 @@ class TapContainerTipoReceitaWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
@@ -18,8 +20,8 @@ class TapContainerTipoReceitaWidget extends StatelessWidget {
         }));
       },
       child: Container(
-        height: 47,
-        width: 380,
+        height: height * 0.07,
+        width: width * 0.96,
         child: Baseline(
           baseline: 36,
           baselineType: TextBaseline.alphabetic,

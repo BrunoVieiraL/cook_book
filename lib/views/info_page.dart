@@ -7,23 +7,24 @@ class InfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Informações'),
       ),
       body: Column(
-        children: const [
+        children: [
           SizedBox(
-            height: 25,
+            height: height * 0.035,
           ),
-          CardDeveloperComponent(
+          const CardDeveloperComponent(
             role: 'Developer',
             fullName: 'Bruno Vieira',
           ),
           SizedBox(
-            height: 50,
+            height: height * 0.028,
           ),
-          CardDeseignerComponent(
+          const CardDeseignerComponent(
             role: 'Designer UI/UX',
             fullName: 'Thays Lobato',
           ),

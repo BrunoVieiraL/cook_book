@@ -6,13 +6,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 90,
+            SizedBox(
+              height: height * 0.14,
             ),
             const Center(
               child: Text(
@@ -29,20 +30,20 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 80,
+            SizedBox(
+              height: height * 0.125,
             ),
             const TapContainerTipoReceitaWidget(tipoReceita: 'Entrada'),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: height * 0.017,
             ),
             const TapContainerTipoReceitaWidget(tipoReceita: 'Prato Principal'),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: height * 0.017,
             ),
             const TapContainerTipoReceitaWidget(tipoReceita: 'Sobremesa'),
-            const SizedBox(
-              height: 150,
+            SizedBox(
+              height: height * 0.125,
             ),
             Align(
               alignment: Alignment.centerLeft,

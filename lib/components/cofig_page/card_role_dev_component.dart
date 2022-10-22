@@ -17,6 +17,7 @@ class CardDeveloperComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Column(
       children: [
         Row(
@@ -30,8 +31,8 @@ class CardDeveloperComponent extends StatelessWidget {
               fullName,
               style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
             ),
-            const SizedBox(
-              width: 15,
+            SizedBox(
+              width: height * 0.023,
             ),
             const CircleAvatar(
               backgroundImage: AssetImage('assets/brunovieira.png'),
@@ -39,8 +40,8 @@ class CardDeveloperComponent extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: height * 0.0156,
         ),
         CardSocialWidget(
           text: 'BrunoVieiraL',

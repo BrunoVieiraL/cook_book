@@ -15,6 +15,7 @@ class CardDeseignerComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Column(
       children: [
         Row(
@@ -22,7 +23,7 @@ class CardDeseignerComponent extends StatelessWidget {
           children: [
             Text(
               role + ': ',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
             ),
             Text(
               fullName,
@@ -37,8 +38,8 @@ class CardDeseignerComponent extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: height * 0.015,
         ),
         CardSocialWidget(
           text: 'Thays Lobato',

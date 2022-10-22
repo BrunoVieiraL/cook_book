@@ -18,10 +18,11 @@ class _EditarReceitasState extends State<EditarReceitas> {
   Widget build(BuildContext context) {
     ReceitasModel argsIDFromHomePage =
         ModalRoute.of(context)!.settings.arguments as ReceitasModel;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        toolbarHeight: 100,
+        toolbarHeight: height * 0.1375,
         title: const Text(
           'Editar Receita',
           style: TextStyle(
