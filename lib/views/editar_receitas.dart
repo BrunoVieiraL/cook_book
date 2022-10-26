@@ -22,7 +22,7 @@ class _EditarReceitasState extends State<EditarReceitas> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        toolbarHeight: height * 0.1375,
+        toolbarHeight: height * 0.13,
         title: const Text(
           'Editar Receita',
           style: TextStyle(

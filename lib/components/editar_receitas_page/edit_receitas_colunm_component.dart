@@ -54,7 +54,7 @@ class _EditReceitasColunmComponentState
           TextFieldCustomWidget(
             controller: widget.modoPreparo,
             textInputAction: TextInputAction.next,
-            maxLines: 5,
+            maxLines: 10,
             hintText: 'Modo de Preparo',
           ),
           Row(
@@ -79,7 +79,7 @@ class _EditReceitasColunmComponentState
               ),
             ],
           ),
-          SizedBox(height: height * 0.265),
+          SizedBox(height: height * 0.026),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

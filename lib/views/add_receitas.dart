@@ -17,7 +17,7 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
   TextEditingController ingredientes = TextEditingController();
   TextEditingController modoPreparo = TextEditingController();
   List<String> listTipoReceita = ['Entrada', 'Prato Principal', 'Sobremesa'];
-  String tipoReceita = '';
+  String? tipoReceita;
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +75,10 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
                 }).toList(),
                 onChanged: (String? newValue) {
                   setState(() {
-                    tipoReceita = newValue!;
+                    tipoReceita = newValue;
                   });
                 },
-                value: tipoReceita.isEmpty ? listTipoReceita[1] : tipoReceita,
+                value: tipoReceita ??= listTipoReceita[1] ,
               ),
             ],
           ),
@@ -92,11 +92,11 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
                 onPressed: () async {
                   if (nomeReceita.text.isEmpty ||
                       ingredientes.text.isEmpty ||
-                      modoPreparo.text.isEmpty) {
+                      modoPreparo.text.isEmpty || tipoReceita == null) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text(
-                          'Preencha os Campos',
+                          'Preencha os Campos e escolha um tipo de receita',
                           style: TextStyle(fontSize: 15),
                         ),
                         duration: Duration(seconds: 3),
@@ -110,7 +110,7 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
                               nomeReceita: nomeReceita.text,
                               ingredientes: ingredientes.text,
                               modoPreparo: modoPreparo.text,
-                              tipoReceita: tipoReceita),
+                              tipoReceita: tipoReceita!),
                         );
                         Navigator.of(context).pop();
                       },
