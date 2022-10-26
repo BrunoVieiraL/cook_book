@@ -98,7 +98,15 @@ class _EditReceitasColunmComponentState
                       );
                     },
                   );
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ListaReceitas(
+                            tipoReceita:
+                                widget.argsIDFromHomePage!.tipoReceita);
+                      },
+                    ),
+                  );
                 },
                 child: const Text('Salvar alteração'),
               ),
