@@ -20,25 +20,30 @@ class CardDeveloperComponent extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              role + ': ',
-              style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
-            ),
-            Text(
-              fullName,
-              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
-            ),
-            SizedBox(
-              width: height * 0.023,
-            ),
-            const CircleAvatar(
-              backgroundImage: AssetImage('assets/brunovieira.png'),
-              radius: 30,
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                role + ': ',
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+              ),
+              Text(
+                fullName,
+                style:
+                    const TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
+              ),
+              SizedBox(
+                width: height * 0.023,
+              ),
+              const CircleAvatar(
+                backgroundImage: AssetImage('assets/brunovieira.png'),
+                radius: 30,
+              ),
+            ],
+          ),
         ),
         SizedBox(
           height: height * 0.0156,
@@ -60,32 +65,32 @@ class CardDeveloperComponent extends StatelessWidget {
             await launchUrlString(urlLinkedin);
           },
         ),
-        CardSocialWidget(
-          text: 'brunoleo.vieira516@gmail.com',
-          iconPath: 'assets/gmail.png',
-          urlPath: () async {
-            String email = 'brunoleo.vieira516@gmail.com';
-            String assunto = '';
-            String body = '';
+        // CardSocialWidget(
+        //   text: 'brunoleo.vieira516@gmail.com',
+        //   iconPath: 'assets/gmail.png',
+        //   urlPath: () async {
+        //     String email = 'brunoleo.vieira516@gmail.com';
+        //     String assunto = '';
+        //     String body = '';
 
-            String? encodeQueryParameters(Map<String, String> params) {
-              return params.entries
-                  .map((MapEntry<String, String> element) =>
-                      '${Uri.encodeComponent(element.key)}=${Uri.encodeComponent(element.value)}')
-                  .join('&');
-            }
+        //     String? encodeQueryParameters(Map<String, String> params) {
+        //       return params.entries
+        //           .map((MapEntry<String, String> element) =>
+        //               '${Uri.encodeComponent(element.key)}=${Uri.encodeComponent(element.value)}')
+        //           .join('&');
+        //     }
 
-            final Uri emailUri = Uri(
-              scheme: 'mailto',
-              path: email,
-              query: encodeQueryParameters(<String, String>{
-                'assunto': assunto,
-                'body': body,
-              }),
-            );
-            await launchUrlString(emailUri.toString());
-          },
-        ),
+        //     final Uri emailUri = Uri(
+        //       scheme: 'mailto',
+        //       path: email,
+        //       query: encodeQueryParameters(<String, String>{
+        //         'assunto': assunto,
+        //         'body': body,
+        //       }),
+        //     );
+        //     await launchUrlString(emailUri.toString());
+        //   },
+        // ),
       ],
     );
   }

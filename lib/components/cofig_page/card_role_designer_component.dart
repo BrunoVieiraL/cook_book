@@ -18,25 +18,30 @@ class CardDeseignerComponent extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              role + ': ',
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-            ),
-            Text(
-              fullName,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-            ),
-            const SizedBox(
-              width: 15,
-            ),
-            const CircleAvatar(
-              radius: 30,
-              backgroundImage: AssetImage('assets/thayslobato.png'),
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                role + ': ',
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+              ),
+              Text(
+                fullName,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              const CircleAvatar(
+                radius: 30,
+                backgroundImage: AssetImage('assets/thayslobato.png'),
+              ),
+            ],
+          ),
         ),
         SizedBox(
           height: height * 0.015,
@@ -58,32 +63,32 @@ class CardDeseignerComponent extends StatelessWidget {
             await launchUrlString(urlLinkedin);
           },
         ),
-        CardSocialWidget(
-          text: 'thayslobato2@gmail.com',
-          iconPath: 'assets/gmail.png',
-          urlPath: () async {
-            String email = 'thayslobato2@gmail.com';
-            String assunto = '';
-            String body = '';
+        // CardSocialWidget(
+        //   text: 'thayslobato2@gmail.com',
+        //   iconPath: 'assets/gmail.png',
+        //   urlPath: () async {
+        //     String email = 'thayslobato2@gmail.com';
+        //     String assunto = '';
+        //     String body = '';
 
-            String? encodeQueryParameters(Map<String, String> params) {
-              return params.entries
-                  .map((MapEntry<String, String> element) =>
-                      '${Uri.encodeComponent(element.key)}=${Uri.encodeComponent(element.value)}')
-                  .join('&');
-            }
+        //     String? encodeQueryParameters(Map<String, String> params) {
+        //       return params.entries
+        //           .map((MapEntry<String, String> element) =>
+        //               '${Uri.encodeComponent(element.key)}=${Uri.encodeComponent(element.value)}')
+        //           .join('&');
+        //     }
 
-            final Uri emailUri = Uri(
-              scheme: 'mailto',
-              path: email,
-              query: encodeQueryParameters(<String, String>{
-                'assunto': assunto,
-                'body': body,
-              }),
-            );
-            await launchUrlString(emailUri.toString());
-          },
-        ),
+        //     final Uri emailUri = Uri(
+        //       scheme: 'mailto',
+        //       path: email,
+        //       query: encodeQueryParameters(<String, String>{
+        //         'assunto': assunto,
+        //         'body': body,
+        //       }),
+        //     );
+        //     await launchUrlString(emailUri.toString());
+        //   },
+        // ),
         CardSocialWidget(
           text: 'TL Designer Gráfico',
           iconPath: 'assets/instagram.png',
