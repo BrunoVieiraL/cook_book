@@ -1,4 +1,5 @@
 import 'package:cook_book/provider/themes_provider.dart';
+import 'package:cook_book/views/splash_page.dart';
 import 'package:cook_book/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,8 +26,9 @@ class MyApp extends StatelessWidget {
           theme: Themes.lightTheme,
           darkTheme: Themes.darkTheme,
           debugShowCheckedModeBanner: false,
-          initialRoute: '/homePage',
+          initialRoute: '/splashPage',
           routes: {
+            '/splashPage': (_) => const SplashPage(),
             '/homePage': (_) => const HomePage(),
             '/listaReceitas': (_) => const ListaReceitas(
                   tipoReceita: '',
