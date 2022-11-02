@@ -13,6 +13,11 @@ class ListaReceitas extends StatefulWidget {
 }
 
 class _ListaReceitasState extends State<ListaReceitas> {
+  final List<String> listTipoReceita = [
+    'Entrada',
+    'Prato Principal',
+    'Sobremesa'
+  ];
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -22,15 +27,48 @@ class _ListaReceitasState extends State<ListaReceitas> {
           SizedBox(
             height: height * 0.078,
           ),
-          Text(
-            widget.tipoReceita,
-            style: const TextStyle(
-                fontSize: 50,
-                shadows: [
-                  Shadow(
-                      color: Colors.white, offset: Offset(1, 5), blurRadius: 8),
-                ],
-                color: Colors.black),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushReplacement(MaterialPageRoute(builder: (context) {
+                      return ListaReceitas(
+                          tipoReceita: widget.tipoReceita == listTipoReceita[0]
+                              ? listTipoReceita[2]
+                              : widget.tipoReceita == listTipoReceita[2]
+                                  ? listTipoReceita[1]
+                                  : listTipoReceita[0]);
+                    }));
+                  },
+                  icon: const Icon(Icons.arrow_back_ios)),
+              Text(
+                widget.tipoReceita,
+                style: const TextStyle(
+                    fontSize: 45,
+                    shadows: [
+                      Shadow(
+                          color: Colors.white,
+                          offset: Offset(1, 5),
+                          blurRadius: 8),
+                    ],
+                    color: Colors.black),
+              ),
+              IconButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushReplacement(MaterialPageRoute(builder: (context) {
+                      return ListaReceitas(
+                          tipoReceita: widget.tipoReceita == listTipoReceita[2]
+                              ? listTipoReceita[0]
+                              : widget.tipoReceita == listTipoReceita[1]
+                                  ? listTipoReceita[2]
+                                  : listTipoReceita[1]);
+                    }));
+                  },
+                  icon: const Icon(Icons.arrow_forward_ios)),
+            ],
           ),
           SizedBox(
             height: height * 0.078,

@@ -6,6 +6,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> listTipoReceita = ['Entrada', 'Prato Principal', 'Sobremesa'];
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SingleChildScrollView(
@@ -33,15 +34,15 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: height * 0.125,
             ),
-            const TapContainerTipoReceitaWidget(tipoReceita: 'Entrada'),
+            TapContainerTipoReceitaWidget(tipoReceita: listTipoReceita[0]),
             SizedBox(
               height: height * 0.017,
             ),
-            const TapContainerTipoReceitaWidget(tipoReceita: 'Prato Principal'),
+             TapContainerTipoReceitaWidget(tipoReceita: listTipoReceita[1]),
             SizedBox(
               height: height * 0.017,
             ),
-            const TapContainerTipoReceitaWidget(tipoReceita: 'Sobremesa'),
+             TapContainerTipoReceitaWidget(tipoReceita: listTipoReceita[2]),
             SizedBox(
               height: height * 0.125,
             ),
