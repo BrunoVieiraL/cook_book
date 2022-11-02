@@ -51,7 +51,7 @@ class CardDeseignerComponent extends StatelessWidget {
           iconPath: 'assets/behance.png',
           urlPath: () async {
             String urlBehance = 'https://www.behance.net/thayslobato';
-            await launchUrlString(urlBehance);
+            await launchUrlString(urlBehance, mode: LaunchMode.externalApplication);
           },
         ),
         CardSocialWidget(
@@ -60,7 +60,7 @@ class CardDeseignerComponent extends StatelessWidget {
           urlPath: () async {
             String urlLinkedin =
                 'https://www.linkedin.com/in/thays-lobato-35b9161b0/';
-            await launchUrlString(urlLinkedin);
+            await launchUrlString(urlLinkedin, mode: LaunchMode.externalApplication);
           },
         ),
         // CardSocialWidget(
@@ -95,7 +95,7 @@ class CardDeseignerComponent extends StatelessWidget {
           urlPath: () async {
             String urlInstagram =
                 'https://www.instagram.com/tldesigner.grafico/';
-            await launchUrlString(urlInstagram);
+            await launchUrlString(urlInstagram, mode: LaunchMode.externalApplication);
           },
         )
       ],

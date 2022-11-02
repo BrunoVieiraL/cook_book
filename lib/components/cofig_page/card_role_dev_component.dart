@@ -55,7 +55,8 @@ class CardDeveloperComponent extends StatelessWidget {
           iconPath: 'assets/github.png',
           urlPath: () async {
             String urlGitHub = 'https://github.com/BrunoVieiraL';
-            await launchUrl(Uri.parse(urlGitHub));
+            await launchUrl(Uri.parse(urlGitHub),
+                mode: LaunchMode.externalApplication);
           },
         ),
         CardSocialWidget(
@@ -64,7 +65,8 @@ class CardDeveloperComponent extends StatelessWidget {
           urlPath: () async {
             String urlLinkedin =
                 'https://www.linkedin.com/in/bruno-vieira-818976191/';
-            await launchUrlString(urlLinkedin);
+            await launchUrlString(urlLinkedin,
+                mode: LaunchMode.externalApplication);
           },
         ),
         // CardSocialWidget(
