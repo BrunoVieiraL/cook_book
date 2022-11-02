@@ -22,7 +22,10 @@ class SplashPage extends StatelessWidget {
             Image(
               image: AssetImage('assets/icon.png'),
             ),
-            Text('Cook Book'),
+            Text(
+              'Cook Book',
+              style: TextStyle(fontSize: 30),
+            ),
           ],
         ),
       ),
