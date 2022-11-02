@@ -21,28 +21,28 @@ class _ConfigPageState extends State<ConfigPage> {
           SizedBox(
             height: height * 0.043,
           ),
-          GestureDetector(
-            onTap: () {
-              emConstrucao();
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  'Importar',
-                  style: TextStyle(fontSize: 25),
-                ),
-                Icon(
-                  Icons.arrow_downward,
-                  size: 28,
-                ),
-              ],
-            ),
-          ),
-          const Divider(
-            thickness: 1,
-            color: Colors.black,
-          ),
+          // GestureDetector(
+          //   onTap: () {
+          //     emConstrucao();
+          //   },
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: const [
+          //       Text(
+          //         'Importar',
+          //         style: TextStyle(fontSize: 25),
+          //       ),
+          //       Icon(
+          //         Icons.arrow_downward,
+          //         size: 28,
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // const Divider(
+          //   thickness: 1,
+          //   color: Colors.black,
+          // ),
           Consumer<ThemeProvider>(
             builder: (context, provider, child) => GestureDetector(
               onTap: () {

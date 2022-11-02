@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:url_launcher/url_launcher_string.dart';
 
+import '../../provider/themes_provider.dart';
 import '../../widgets/card_social_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,6 +20,7 @@ class CardDeveloperComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     return Column(
       children: [
         Padding(
@@ -27,13 +30,17 @@ class CardDeveloperComponent extends StatelessWidget {
             children: [
               Text(
                 role + ': ',
-                style:
-                    const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               Text(
                 fullName,
-                style:
-                    const TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
               SizedBox(
                 width: height * 0.023,

@@ -18,7 +18,7 @@ class InfoPage extends StatelessWidget {
             height: height * 0.035,
           ),
           const CardDeveloperComponent(
-            role: 'Developer',
+            role: 'Mobile Developer',
             fullName: 'Bruno Vieira',
           ),
           SizedBox(

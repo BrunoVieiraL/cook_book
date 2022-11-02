@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cooking_agenda">
    <application
-        android:label="cook_book"
+        android:label="Cook Book"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

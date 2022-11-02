@@ -26,7 +26,7 @@ class CardSocialWidget extends StatelessWidget {
           Image.asset(
             iconPath,
             scale: 13,
-            color: provider.isDark == false
+            color: provider.isDark == true
                 ? Colors.black
                 : const Color(0xFF7F52C7),
           ),
