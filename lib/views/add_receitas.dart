@@ -22,7 +22,7 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final appBarSize = height * 0.13;    
+    final appBarSize = height * 0.13;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -35,6 +35,7 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
                 Shadow(
                   color: Colors.white,
                   offset: Offset(0, 3),
+                  blurRadius: 15,
                 ),
               ],
               fontSize: 30),
@@ -78,11 +79,11 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
                     tipoReceita = newValue;
                   });
                 },
-                value: tipoReceita ??= listTipoReceita[1] ,
+                value: tipoReceita ??= listTipoReceita[1],
               ),
             ],
           ),
-           SizedBox(
+          SizedBox(
             height: height * 0.015,
           ),
           Row(
@@ -92,7 +93,8 @@ class _AddReceitaPageState extends State<AddReceitaPage> {
                 onPressed: () async {
                   if (nomeReceita.text.isEmpty ||
                       ingredientes.text.isEmpty ||
-                      modoPreparo.text.isEmpty || tipoReceita == null) {
+                      modoPreparo.text.isEmpty ||
+                      tipoReceita == null) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text(

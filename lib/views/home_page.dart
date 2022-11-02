@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../provider/themes_provider.dart';
 import '../widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -6,8 +8,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> listTipoReceita = ['Entrada', 'Prato Principal', 'Sobremesa'];
+    final List<String> listTipoReceita = [
+      'Entrada',
+      'Prato Principal',
+      'Sobremesa'
+    ];
     final height = MediaQuery.of(context).size.height;
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -16,15 +23,17 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: height * 0.14,
             ),
-            const Center(
+            Center(
               child: Text(
                 'Receitas',
                 style: TextStyle(
                   fontSize: 45,
                   shadows: [
                     Shadow(
-                      offset: Offset(0, 4),
-                      color: Colors.white,
+                      offset: const Offset(0, 4),
+                      color: themeProvider.isDark
+                          ? Colors.white
+                          : Colors.deepPurple.shade400,
                       blurRadius: 15,
                     ),
                   ],
@@ -38,11 +47,11 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: height * 0.017,
             ),
-             TapContainerTipoReceitaWidget(tipoReceita: listTipoReceita[1]),
+            TapContainerTipoReceitaWidget(tipoReceita: listTipoReceita[1]),
             SizedBox(
               height: height * 0.017,
             ),
-             TapContainerTipoReceitaWidget(tipoReceita: listTipoReceita[2]),
+            TapContainerTipoReceitaWidget(tipoReceita: listTipoReceita[2]),
             SizedBox(
               height: height * 0.125,
             ),
