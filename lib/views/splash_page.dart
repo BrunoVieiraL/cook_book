@@ -14,7 +14,7 @@ class SplashPage extends StatelessWidget {
             builder: (BuildContext context) => const HomePage())));
     return Scaffold(
       body: Container(
-        color: Colors.purple,
+        color: const Color(0xFF7A1FA2),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
