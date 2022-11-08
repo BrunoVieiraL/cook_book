@@ -1,6 +1,7 @@
 import 'package:cook_book/provider/themes_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ConfigPage extends StatefulWidget {
   const ConfigPage({Key? key}) : super(key: key);
@@ -21,28 +22,6 @@ class _ConfigPageState extends State<ConfigPage> {
           SizedBox(
             height: height * 0.043,
           ),
-          // GestureDetector(
-          //   onTap: () {
-          //     emConstrucao();
-          //   },
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: const [
-          //       Text(
-          //         'Importar',
-          //         style: TextStyle(fontSize: 25),
-          //       ),
-          //       Icon(
-          //         Icons.arrow_downward,
-          //         size: 28,
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          // const Divider(
-          //   thickness: 1,
-          //   color: Colors.black,
-          // ),
           Consumer<ThemeProvider>(
             builder: (context, provider, child) => GestureDetector(
               onTap: () {
@@ -97,7 +76,8 @@ class _ConfigPageState extends State<ConfigPage> {
           ),
           GestureDetector(
             onTap: () {
-              emConstrucao();
+              Share.share(
+                  'https://play.google.com/store/apps/details?id=com.bvflutterdev.cook_book');
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,10 +100,5 @@ class _ConfigPageState extends State<ConfigPage> {
         ],
       ),
     );
-  }
-
-  emConstrucao() {
-    return ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Em construção')));
   }
 }
