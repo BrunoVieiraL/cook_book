@@ -44,5 +44,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-app/upload-keystore.jks
+app/cookbook.jks
 key.properties
+app/cookbook-459916-67cdce5cada1.json
