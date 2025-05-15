@@ -6,13 +6,13 @@ import '../../widgets/widgets.dart';
 
 class EditReceitasColunmComponent extends StatefulWidget {
   const EditReceitasColunmComponent({
-    Key? key,
+    super.key,
     required this.nomeReceita,
     this.argsIDFromHomePage,
     required this.ingredientes,
     required this.modoPreparo,
     required this.tipoReceita,
-  }) : super(key: key);
+  });
 
   final TextEditingController nomeReceita;
   final ReceitasModel? argsIDFromHomePage;

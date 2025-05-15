@@ -2,7 +2,7 @@ import 'package:cook_book/models/receitas_model.dart';
 import 'package:flutter/material.dart';
 
 class DetalhesReceitas extends StatefulWidget {
-  const DetalhesReceitas({Key? key}) : super(key: key);
+  const DetalhesReceitas({super.key});
 
   @override
   State<DetalhesReceitas> createState() => _DetalhesReceitasState();

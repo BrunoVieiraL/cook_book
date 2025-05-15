@@ -8,10 +8,10 @@ class CardDeveloperComponent extends StatelessWidget {
   final String fullName;
 
   const CardDeveloperComponent({
-    Key? key,
+    super.key,
     required this.role,
     required this.fullName,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class CardDeveloperComponent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                role + ': ',
+                '$role: ',
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,

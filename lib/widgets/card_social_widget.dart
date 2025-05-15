@@ -7,12 +7,13 @@ class CardSocialWidget extends StatelessWidget {
   final String text;
   final String iconPath;
   final Function urlPath;
+
   const CardSocialWidget({
-    Key? key,
+    super.key,
     required this.text,
     required this.iconPath,
     required this.urlPath,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

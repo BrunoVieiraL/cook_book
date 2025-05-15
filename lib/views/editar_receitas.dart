@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../components/components.dart';
 
 class EditarReceitas extends StatefulWidget {
-  const EditarReceitas({Key? key}) : super(key: key);
+  const EditarReceitas({super.key});
 
   @override
   State<EditarReceitas> createState() => _EditarReceitasState();

@@ -8,10 +8,10 @@ class CardDeseignerComponent extends StatelessWidget {
   final String fullName;
 
   const CardDeseignerComponent({
-    Key? key,
+    super.key,
     required this.role,
     required this.fullName,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class CardDeseignerComponent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                role + ': ',
+                '$role: ',
                 style:
                     const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
               ),
@@ -51,7 +51,8 @@ class CardDeseignerComponent extends StatelessWidget {
           iconPath: 'assets/behance.png',
           urlPath: () async {
             String urlBehance = 'https://www.behance.net/thayslobato';
-            await launchUrlString(urlBehance, mode: LaunchMode.externalApplication);
+            await launchUrlString(urlBehance,
+                mode: LaunchMode.externalApplication);
           },
         ),
         CardSocialWidget(
@@ -60,7 +61,8 @@ class CardDeseignerComponent extends StatelessWidget {
           urlPath: () async {
             String urlLinkedin =
                 'https://www.linkedin.com/in/thays-lobato-35b9161b0/';
-            await launchUrlString(urlLinkedin, mode: LaunchMode.externalApplication);
+            await launchUrlString(urlLinkedin,
+                mode: LaunchMode.externalApplication);
           },
         ),
         // CardSocialWidget(
@@ -95,7 +97,8 @@ class CardDeseignerComponent extends StatelessWidget {
           urlPath: () async {
             String urlInstagram =
                 'https://www.instagram.com/tldesigner.grafico/';
-            await launchUrlString(urlInstagram, mode: LaunchMode.externalApplication);
+            await launchUrlString(urlInstagram,
+                mode: LaunchMode.externalApplication);
           },
         )
       ],

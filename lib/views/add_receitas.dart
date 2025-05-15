@@ -4,9 +4,7 @@ import '../models/receitas_model.dart';
 import '../widgets/widgets.dart';
 
 class AddReceitaPage extends StatefulWidget {
-  const AddReceitaPage({
-    Key? key,
-  }) : super(key: key);
+  const AddReceitaPage({super.key});
 
   @override
   State<AddReceitaPage> createState() => _AddReceitaPageState();

@@ -4,9 +4,9 @@ import '../../views/lista_receitas_page.dart';
 
 class TapContainerTipoReceitaWidget extends StatelessWidget {
   const TapContainerTipoReceitaWidget({
-    Key? key,
+    super.key,
     required this.tipoReceita,
-  }) : super(key: key);
+  });
   final String tipoReceita;
 
   @override
@@ -22,6 +22,11 @@ class TapContainerTipoReceitaWidget extends StatelessWidget {
       child: Container(
         height: height * 0.07,
         width: width * 0.96,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          shape: BoxShape.rectangle,
+          color: Colors.deepPurple.shade50,
+        ),
         child: Baseline(
           baseline: 36,
           baselineType: TextBaseline.alphabetic,
@@ -30,11 +35,6 @@ class TapContainerTipoReceitaWidget extends StatelessWidget {
             textAlign: TextAlign.left,
             style: const TextStyle(fontSize: 28, color: Colors.black),
           ),
-        ),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          shape: BoxShape.rectangle,
-          color: Colors.deepPurple.shade50,
         ),
       ),
     );

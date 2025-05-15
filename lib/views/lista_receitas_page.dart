@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ListaReceitas extends StatefulWidget {
-  const ListaReceitas({required this.tipoReceita, Key? key}) : super(key: key);
+  const ListaReceitas({required this.tipoReceita, super.key});
   final String tipoReceita;
 
   @override
@@ -102,6 +102,10 @@ class _ListaReceitasState extends State<ListaReceitas> {
                         return Slidable(
                           endActionPane: ActionPane(
                             dragDismissible: false,
+                            motion: const DrawerMotion(),
+                            dismissible: DismissiblePane(
+                              onDismissed: () {},
+                            ),
                             children: [
                               SlidableAction(
                                   padding: const EdgeInsets.only(right: 5),
@@ -128,10 +132,6 @@ class _ListaReceitasState extends State<ListaReceitas> {
                                 }),
                               ),
                             ],
-                            motion: const DrawerMotion(),
-                            dismissible: DismissiblePane(
-                              onDismissed: () {},
-                            ),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(3.0),

@@ -1,0 +1,2 @@
+D:/Desenvolvedor/PersonalProjects/Flutter/cooking_agenda/android/app/.cxx/RelWithDebInfo/23466u24/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Desenvolvedor/PersonalProjects/Flutter/cooking_agenda/android/app/.cxx/RelWithDebInfo/23466u24/armeabi-v7a/CMakeFiles/rebuild_cache.dir

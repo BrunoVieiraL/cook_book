@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ConfigPage extends StatefulWidget {
-  const ConfigPage({Key? key}) : super(key: key);
+  const ConfigPage({super.key});
 
   @override
   State<ConfigPage> createState() => _ConfigPageState();
@@ -75,9 +75,13 @@ class _ConfigPageState extends State<ConfigPage> {
             color: Colors.black,
           ),
           GestureDetector(
-            onTap: () {
-              Share.share(
-                  'https://play.google.com/store/apps/details?id=com.bvflutterdev.cook_book');
+            onTap: () async {
+              await SharePlus.instance.share(
+                ShareParams(
+                  uri: Uri.parse(
+                      'https://play.google.com/store/apps/details?id=com.bvflutterdev.cook_book'),
+                ),
+              );
             },
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
