@@ -15,10 +15,10 @@ class SplashPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         color: const Color(0xFF7A1FA2),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             Image(
               image: AssetImage('assets/icon.png'),
             ),

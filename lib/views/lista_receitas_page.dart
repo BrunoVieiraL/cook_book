@@ -78,9 +78,9 @@ class _ListaReceitasState extends State<ListaReceitas> {
             builder: (BuildContext context,
                 AsyncSnapshot<List<ReceitasModel>> snapshot) {
               if (!snapshot.hasData) {
-                return Center(
+                return const Center(
                   child: Column(
-                    children: const [
+                    children: [
                       CircularProgressIndicator(),
                       Text('Carregando receitas'),
                     ],

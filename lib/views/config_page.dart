@@ -56,9 +56,9 @@ class _ConfigPageState extends State<ConfigPage> {
             onTap: () {
               Navigator.of(context).pushNamed('/infoPage');
             },
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
                   'Informações',
                   style: TextStyle(fontSize: 25),
@@ -79,9 +79,9 @@ class _ConfigPageState extends State<ConfigPage> {
               Share.share(
                   'https://play.google.com/store/apps/details?id=com.bvflutterdev.cook_book');
             },
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
                   'Compartilhar app',
                   style: TextStyle(fontSize: 25),
